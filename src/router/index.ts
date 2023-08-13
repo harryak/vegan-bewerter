@@ -1,13 +1,19 @@
-import { createRouter, createWebHashHistory, Router } from "vue-router";
+import { createRouter, createWebHistory, Router } from "vue-router";
 
 const StoreChooser = () => import("@views/StoreChooser.vue");
+const BrandChooser = () => import("@views/BrandChooser.vue");
 
 const router: Router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: [
     {
-      path: "",
+      path: "/",
       component: StoreChooser,
+    },
+    {
+      path: "/brands",
+      component: BrandChooser,
+      props: { storeIds: [""] },
     },
   ],
 });

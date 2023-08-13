@@ -1,50 +1,83 @@
 import { defineStore } from "pinia";
+import { ref, Ref } from "vue";
 
 import api from "../api/products";
 import { Brand, Category, Product, Store } from "../types";
 
-export const useProductsStore = () => {
-  const productsStoreBuilder = defineStore("products", {
-    state: () => ({
-      brands: [] as Brand[],
-      categories: [] as Category[],
-      stores: [] as Store[],
-      products: [] as Product[],
-    }),
+export const useProductsStore = defineStore("products", () => {
+  const brands: Ref<Brand[]> = ref([]);
+  const categories: Ref<Category[]> = ref([]);
+  const stores: Ref<Store[]> = ref([]);
+  const products: Ref<Product[]> = ref([]);
 
-    getters: {
-      //
-    },
+  const brandsIDFilter: Ref<string[]> = ref([]);
+  const categoriesIDFilter: Ref<string[]> = ref([]);
+  const storesIDFilter: Ref<string[]> = ref([]);
 
-    actions: {
-      async fetchData(): Promise<void> {
-        const data = await api.fetchProducts();
+  const resetFilter = (
+    filter:
+      | "brands"
+      | "categories"
+      | "stores"
+      | ("brands" | "categories" | "stores")[]
+  ): void => {
+    if (filter === "brands" || filter.includes("brands")) {
+      brandsIDFilter.value = brands.value.map((brand) => brand.id);
+    }
 
-        this.brands = data.brands;
-        this.categories = data.categories;
-        this.stores = data.stores;
-        this.products = data.products;
-      },
+    if (filter === "categories" || filter.includes("categories")) {
+      categoriesIDFilter.value = categories.value.map(
+        (categories) => categories.id
+      );
+    }
 
-      brandsForStore(store: Store): Brand[] {
-        const existingCombinations = this.products
-          .filter((product) =>
-            product.stores.some((productStore) => productStore == store.id)
-          )
-          .flatMap((product) => product.brand);
+    if (filter === "stores" || filter.includes("stores")) {
+      storesIDFilter.value = stores.value.map((stores) => stores.id);
+    }
+  };
 
-        return this.brands.filter(
-          (brand) => existingCombinations.indexOf(brand.id) >= 0
-        );
-      },
+  const resetAllFilters = (): void => {
+    resetFilter(["brands", "categories", "stores"]);
+  };
 
-      $reset(): void {
-        this.fetchData();
-      },
-    },
-  });
+  const fetchData = async (): Promise<void> => {
+    const data = await api.fetchProducts();
 
-  const productsStore = productsStoreBuilder();
-  productsStore.$reset();
-  return productsStore;
-};
+    brands.value = data.brands;
+    categories.value = data.categories;
+    stores.value = data.stores;
+    products.value = data.products;
+
+    resetAllFilters();
+  };
+
+  const brandsFiltered = (): Brand[] => {
+    const storeIDs = storesIDFilter.value;
+
+    const existingCombinations = products.value
+      .filter((product) =>
+        product.stores.some(
+          (productStore) => storeIDs.indexOf(productStore) >= 0
+        )
+      )
+      .flatMap((product) => product.brand);
+
+    return brands.value.filter(
+      (brand) => existingCombinations.indexOf(brand.id) >= 0
+    );
+  };
+
+  return {
+    brands,
+    categories,
+    stores,
+    products,
+    brandsFilter: brandsIDFilter,
+    categoriesFilter: categoriesIDFilter,
+    storesFilter: storesIDFilter,
+    fetchData,
+    resetFilter,
+    resetFilters: resetAllFilters,
+    brandsFiltered,
+  };
+});

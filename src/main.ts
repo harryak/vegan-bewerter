@@ -1,14 +1,18 @@
-import dayjs from "dayjs";
-
 import { createApp } from "vue";
+import { createPinia } from "pinia";
+
 import App from "./App.vue";
 import router from "./router";
-import { setupStore } from "@/stores";
 
 import "./styles/index.scss";
+import { useProductsStore } from "./stores/products";
+
+const pinia = createPinia();
 
 const app = createApp(App);
 
-dayjs.locale("de-de");
-setupStore(app);
-app.use(router).mount("#app");
+app.use(pinia).use(router).mount("#app");
+
+//TODO: Do this intelligently.
+const productsStore = useProductsStore();
+await productsStore.fetchData();
