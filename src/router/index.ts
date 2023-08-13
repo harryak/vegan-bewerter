@@ -8,10 +8,13 @@ const router: Router = createRouter({
   routes: [
     {
       path: "/",
+      alias: "/stores",
+      name: "stores",
       component: StoreChooser,
     },
     {
       path: "/brands",
+      name: "brands",
       component: BrandChooser,
       props: { storeIds: [""] },
     },
