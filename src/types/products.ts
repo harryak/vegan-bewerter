@@ -1,3 +1,13 @@
+export interface Brand {
+  id: string;
+  name: string;
+}
+
+export interface Category {
+  id: string;
+  name: string;
+}
+
 export interface Rating {
   author: string;
   stars: number;
@@ -9,15 +19,11 @@ export interface Store {
   name: string;
 }
 
-export interface Brand {
-  id: string;
-  name: string;
-}
-
 export interface Product {
-  brand: Brand;
-  store: Store[];
+  id?: string;
+  brand: string;
   name: string;
-  ratings: Rating[];
+  stores: string[];
   categories: string[];
+  ratings: Rating[];
 }

@@ -1,6 +1,8 @@
 import axios from "axios";
 
-import { Product } from "@/types";
+import devProducts from "../../products-dev.json";
+
+import { ApiDTO } from "@/types";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const api = axios.create({
@@ -13,21 +15,8 @@ const api = axios.create({
 });
 
 export default {
-  async fetchProducts(): Promise<Product[]> {
-    return [
-      {
-        brand: { id: "0", name: "Test" },
-        store: [{ id: "0", name: "ALDI" }],
-        name: "Test",
-        ratings: [
-          {
-            author: "Felix",
-            stars: 4,
-          },
-        ],
-        categories: ["Streichkeese"],
-      },
-    ];
+  async fetchProducts(): Promise<ApiDTO> {
+    return devProducts;
     //return await api.get("products");
   },
 };
