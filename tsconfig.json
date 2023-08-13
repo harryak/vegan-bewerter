@@ -13,11 +13,10 @@
     "lib": ["esnext", "dom"],
     "types": ["vite/client", "node"],
     "paths": {
-      "@/*": ["src/*"],
-      "@common/*": ["src/common/*"],
-      "@components/*": ["src/components/*"],
-      "@store/*": ["src/store/*"],
-      "@views/*": ["src/views/*"]
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@stores/*": ["./src/stores/*"],
+      "@views/*": ["./src/views/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],

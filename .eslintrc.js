@@ -13,4 +13,7 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: "module",
   },
+  rules: {
+    "prettier/prettier": 1, // Means warning
+  },
 };

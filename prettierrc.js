@@ -5,4 +5,5 @@ module.exports = {
   arrowParens: "avoid",
   trailingComma: "none",
   htmlWhitespaceSensitivity: "ignore",
+  printWidth: 120,
 };
