@@ -2,12 +2,18 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 
-  --van-action-bar-height: 6rem;
-  --van-action-bar-icon-size: 2rem;
-  --van-action-bar-icon-width: 6rem;
-  --van-action-bar-icon-font-size: var(--van-font-size-m);
+  margin: 0 auto;
+
+  --content-width: 100vw;
+  width: 100vw;
+
+  @media (min-width: 1200px) {
+    margin: 0 auto;
+
+    --content-width: 1200px;
+    width: 1200px;
+  }
 }
+
+@import url("_menu_grid.scss");
