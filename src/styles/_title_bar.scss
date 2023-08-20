@@ -1,0 +1,45 @@
+.title-bar {
+  background-color: var(--color-main-shade-2);
+  margin: 0 calc((var(--content-width) - 100vw) / 2);
+  height: 7rem;
+  position: relative;
+  width: 100vw;
+  z-index: 1;
+
+  & > .title-bar-shade,
+  & > .title-bar-content-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  & > .title-bar-shade {
+    background-color: var(--color-main-shade-1);
+    top: -1rem;
+  }
+
+  & > .title-bar-content-wrapper {
+    background-color: var(--color-main);
+    top: -2rem;
+
+    & > .title-bar-content {
+      color: var(--color-text-highlight);
+      font-family: "Courier New", Courier, monospace;
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 0.1rem;
+      margin: 0 auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-top: 3rem;
+      width: var(--content-width);
+
+      @media (min-width: 1200px) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}

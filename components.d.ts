@@ -7,11 +7,13 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ActionBar: typeof import('./src/components/ActionBar.vue')['default']
     MenuGrid: typeof import('./src/components/MenuGrid.vue')['default']
     MenuGridItem: typeof import('./src/components/MenuGridItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     StoreChooser: typeof import('./src/components/StoreChooser.vue')['default']
+    TitleBar: typeof import('./src/components/TitleBar.vue')['default']
     VanActionBar: typeof import('vant/es')['ActionBar']
     VanActionBarIcon: typeof import('vant/es')['ActionBarIcon']
     VanButton: typeof import('vant/es')['Button']

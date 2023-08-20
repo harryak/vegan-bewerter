@@ -1,12 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+@import url("_theme.scss");
+@import url("_title_bar.scss");
+@import url("_menu_grid.scss");
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   margin: 0 auto;
 
   --content-width: 100vw;
+  min-height: 100vh;
   width: 100vw;
+
+  overflow-x: hidden;
 
   @media (min-width: 1200px) {
     margin: 0 auto;
@@ -15,5 +29,3 @@
     width: 1200px;
   }
 }
-
-@import url("_menu_grid.scss");
