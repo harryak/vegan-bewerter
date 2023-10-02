@@ -10,6 +10,7 @@ declare module 'vue' {
     ActionBar: (typeof import("./src/components/ActionBar.vue"))["default"]
     CardElement: typeof import('./src/components/CardElement.vue')['default']
     CardGrid: typeof import('./src/components/CardGrid.vue')['default']
+    ChipElement: typeof import('./src/components/ChipElement.vue')['default']
     MenuGrid: (typeof import("./src/components/MenuGrid.vue"))["default"]
     MenuGridItem: (typeof import("./src/components/MenuGridItem.vue"))["default"]
     ProductGridFilter: typeof import('./src/components/ProductGridFilter.vue')['default']
