@@ -1,5 +1,5 @@
 <template>
-  <div
+  <header
     class="title-bar"
     :style="'clip-path: url(#title-bar-clip-path-' + uid + ');'"
   >
@@ -26,7 +26,7 @@
         </clipPath>
       </defs>
     </svg>
-  </div>
+  </header>
 </template>
 
 <script lang="ts" setup>

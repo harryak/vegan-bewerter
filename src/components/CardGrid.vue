@@ -1,7 +1,7 @@
 <template>
   <div
     :class="{
-      'menu-grid': true,
+      'card-grid': true,
       clickable: props.clickable,
       selectable: props.selectable,
     }"

@@ -1,31 +1,39 @@
+@import url("_theme.scss");
+
+@import url("_title_bar.scss");
+@import url("_card_element.scss");
+@import url("_card_grid.scss");
+
 body {
   margin: 0;
   padding: 0;
 }
 
-@import url("_theme.scss");
-@import url("_title_bar.scss");
-@import url("_menu_grid.scss");
-
 #app {
   color: var(--color-text);
-  background-color: var(--color-background);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   margin: 0 auto;
 
-  --content-width: 100vw;
   min-height: 100vh;
-  width: 100vw;
+  --content-width: 100vw;
+
+  @media (min-width: 1200px) {
+    --content-width: 1200px;
+  }
 
   overflow-x: hidden;
 
-  @media (min-width: 1200px) {
-    margin: 0 auto;
+  main {
+    box-sizing: border-box;
+    padding: 1rem;
+    width: 100vw;
 
-    --content-width: 1200px;
-    width: 1200px;
+    @media (min-width: 1200px) {
+      margin: 0 auto;
+      width: var(--content-width);
+    }
   }
 }

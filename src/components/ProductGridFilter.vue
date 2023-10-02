@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li v-for="brand in brandsToSelect" :key="brand.id">
-      <van-button>{{ brand.name }}</van-button>
+      <p>{{ brand.name }}</p>
     </li>
   </ul>
 </template>

@@ -3,7 +3,9 @@
     <div>Vegan-Bewerter</div>
   </title-bar>
 
-  <RouterView />
+  <main>
+    <RouterView />
+  </main>
 </template>
 
 <script lang="ts" setup>

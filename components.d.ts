@@ -7,17 +7,15 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    ActionBar: typeof import('./src/components/ActionBar.vue')['default']
-    MenuGrid: typeof import('./src/components/MenuGrid.vue')['default']
-    MenuGridItem: typeof import('./src/components/MenuGridItem.vue')['default']
+    ActionBar: (typeof import("./src/components/ActionBar.vue"))["default"]
+    CardElement: typeof import('./src/components/CardElement.vue')['default']
+    CardGrid: typeof import('./src/components/CardGrid.vue')['default']
+    MenuGrid: (typeof import("./src/components/MenuGrid.vue"))["default"]
+    MenuGridItem: (typeof import("./src/components/MenuGridItem.vue"))["default"]
+    ProductGridFilter: typeof import('./src/components/ProductGridFilter.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    StoreChooser: typeof import('./src/components/StoreChooser.vue')['default']
+    StoreChooser: (typeof import("./src/components/StoreChooser.vue"))["default"]
     TitleBar: typeof import('./src/components/TitleBar.vue')['default']
-    VanActionBar: typeof import('vant/es')['ActionBar']
-    VanActionBarIcon: typeof import('vant/es')['ActionBarIcon']
-    VanButton: typeof import('vant/es')['Button']
-    VanGrid: typeof import('vant/es')['Grid']
-    VanGridItem: typeof import('vant/es')['GridItem']
   }
 }

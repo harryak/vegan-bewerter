@@ -1,13 +1,13 @@
 <template>
-  <menu-grid clickable>
-    <menu-grid-item
+  <card-grid clickable>
+    <card
       v-for="brand in brandsToSelect"
       :key="brand.id"
       @click="chooseBrand(brand.id)"
     >
       {{ brand.name }}
-    </menu-grid-item>
-  </menu-grid>
+    </card>
+  </card-grid>
 </template>
 
 <script lang="ts" setup>
