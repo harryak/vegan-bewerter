@@ -16,6 +16,7 @@ declare module 'vue' {
     ProductGridFilter: typeof import('./src/components/ProductGridFilter.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ScannerElement: typeof import('./src/components/Scanner/ScannerElement.vue')['default']
     StoreChooser: (typeof import("./src/components/StoreChooser.vue"))["default"]
     TitleBar: typeof import('./src/components/TitleBar.vue')['default']
   }

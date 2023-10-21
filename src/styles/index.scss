@@ -36,5 +36,9 @@ body {
       margin: 0 auto;
       width: var(--content-width);
     }
+
+    & > .fullsize {
+      margin: -1rem;
+    }
   }
 }
