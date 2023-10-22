@@ -8,7 +8,7 @@ export const vRipple: ObjectDirective = {
     // Default values.
     const props = {
       transition: 500,
-      backgroundColor: "rgba(0, 0, 0, 0.35)",
+      backgroundColor: "var(--color-shadow)",
       zIndex: "100",
     };
 
@@ -87,7 +87,7 @@ export const vRipple: ObjectDirective = {
           ? target.style.position
           : getComputedStyle(target).position;
       // Change target position to relative to guarantee ripples correct positioning
-      if (storedTargetPosition !== "relative") {
+      if (storedTargetPosition === "static") {
         target.style.position = "relative";
       }
 

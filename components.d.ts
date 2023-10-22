@@ -7,17 +7,14 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    ActionBar: (typeof import("./src/components/ActionBar.vue"))["default"]
     CardElement: typeof import('./src/components/CardElement.vue')['default']
     CardGrid: typeof import('./src/components/CardGrid.vue')['default']
     ChipElement: typeof import('./src/components/ChipElement.vue')['default']
-    MenuGrid: (typeof import("./src/components/MenuGrid.vue"))["default"]
-    MenuGridItem: (typeof import("./src/components/MenuGridItem.vue"))["default"]
+    FloatingActionButton: typeof import('./src/components/FloatingActionButton.vue')['default']
     ProductGridFilter: typeof import('./src/components/ProductGridFilter.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ScannerElement: typeof import('./src/components/Scanner/ScannerElement.vue')['default']
-    StoreChooser: (typeof import("./src/components/StoreChooser.vue"))["default"]
     TitleBar: typeof import('./src/components/TitleBar.vue')['default']
   }
 }

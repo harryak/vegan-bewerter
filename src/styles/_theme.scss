@@ -6,11 +6,17 @@
   --color-text: #090b0a;
   --color-text-highlight: #dceed1;
 
+  --color-shadow: #090b0a4f;
+
   --card-grid-gutter-width: 0.5rem;
   --card-color: #ebf7d8;
   --card-color-darken: #cddbb8;
   --card-border-color: #cddbb8;
 
   --chip-color-active: var(--color-main);
-  --chip-color-darken: #cddbb8;
+  --chip-color-hover: #dceed1;
+
+  --fab-color: #348c1e;
+  --fab-color-hover: #256515;
+  --fab-border-color: #256515;
 }

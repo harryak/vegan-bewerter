@@ -14,6 +14,7 @@
       </template>
     </card-element>
   </card-grid>
+  <floating-action-button icon="plus" />
 </template>
 
 <script lang="ts" setup>
