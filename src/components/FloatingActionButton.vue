@@ -6,7 +6,7 @@
       type="image/svg+xml"
       :aria-hidden="true"
     />
-    <button class="floating-action-button" v-ripple />
+    <div role="button" class="floating-action-button" v-ripple />
   </div>
 </template>
 
