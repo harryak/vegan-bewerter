@@ -1,20 +1,50 @@
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 .chip {
   display: inline-flex;
   flex-direction: row;
+  position: relative;
 
-  border: 1px solid var(--chip-border-color);
   border-radius: 0.25rem;
 
   box-sizing: border-box;
   height: 2rem;
   min-height: 2rem;
 
+  background-color: #fff;
+  transition: background-color ease-in-out 250ms;
+
   user-select: none;
 
-  transition: all 250ms ease-in-out;
+  &::before {
+    --angle: 0deg;
 
-  &.active {
-    background-color: var(--chip-color-active);
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    border-radius: 0.25rem;
+    border: 2px solid transparent;
+
+    background: conic-gradient(
+        var(--chip-color-active) var(--angle),
+        transparent 0deg
+      )
+      border-box;
+    mask:
+      linear-gradient(#fff 0 0) padding-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: xor;
+
+    transition: --angle 250ms ease-in-out;
+  }
+
+  &.active::before {
+    --angle: 360deg;
   }
 
   &:hover,
@@ -42,24 +72,32 @@
     flex-direction: row;
     align-items: center;
 
+    position: relative;
+
     line-height: 1.5rem;
     padding: 0.25rem 1rem;
 
     cursor: pointer;
 
+    position: relative;
+
     & > object {
       display: block;
-      margin: -0.25rem 0.5rem -0.25rem -0.5rem;
       height: 1.5rem;
       width: 1.5rem;
 
-      cursor: pointer;
+      position: absolute;
+      bottom: -0.5rem;
+      right: -0.5rem;
 
       transition: all 50ms ease-in-out;
 
       &.hidden {
         height: 0;
         width: 0;
+
+        bottom: 0.25rem;
+        right: 0.25rem;
       }
     }
 
