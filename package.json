@@ -19,7 +19,8 @@
     "pinia": "^2.1.7",
     "vant": "^4.7.2",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "webrtc-adapter": "github:webrtc/adapter"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",

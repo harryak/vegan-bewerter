@@ -14,7 +14,10 @@
       </template>
     </card-element>
   </card-grid>
-  <floating-action-button icon="plus" />
+  <floating-action-button
+    icon="plus"
+    @click="$router.push({ name: 'product-new' })"
+  />
 </template>
 
 <script lang="ts" setup>

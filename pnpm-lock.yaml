@@ -26,6 +26,9 @@ dependencies:
   vue-router:
     specifier: ^4.2.5
     version: 4.2.5(vue@3.3.4)
+  webrtc-adapter:
+    specifier: github:webrtc/adapter
+    version: github.com/webrtc/adapter/91de719296c1276eb45b3e68df923b3a817ecc5e
 
 devDependencies:
   '@babel/core':
@@ -4620,6 +4623,10 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
+  /sdp@3.2.0:
+    resolution: {integrity: sha512-d7wDPgDV3DDiqulJjKiV2865wKsJ34YI+NDREbm+FySq6WuKOikwyNQcm+doLAZ1O6ltdO0SeKle2xMpN3Brgw==}
+    dev: false
+
   /semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
     hasBin: true
@@ -5537,3 +5544,14 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  github.com/webrtc/adapter/91de719296c1276eb45b3e68df923b3a817ecc5e:
+    resolution: {tarball: https://codeload.github.com/webrtc/adapter/tar.gz/91de719296c1276eb45b3e68df923b3a817ecc5e}
+    name: webrtc-adapter
+    version: 8.0.0
+    engines: {node: '>=6.0.0', npm: '>=3.10.0'}
+    prepare: true
+    requiresBuild: true
+    dependencies:
+      sdp: 3.2.0
+    dev: false

@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, Router } from "vue-router";
 
 const ProductGrid = () => import("@views/ProductGrid.vue");
-// const QuaggaTest = () => import("@views/QuaggaTest.vue");
+const ProductNew = () => import("@views/ProductNew.vue");
 
 const router: Router = createRouter({
   history: createWebHistory(),
@@ -12,12 +12,12 @@ const router: Router = createRouter({
       name: "products",
       component: ProductGrid,
     },
-    // {
-    //   path: "/",
-    //   alias: "/products",
-    //   name: "products",
-    //   component: QuaggaTest,
-    // },
+    {
+      path: "/new",
+      alias: ["/new-product", "/product-new"],
+      name: "product-new",
+      component: ProductNew,
+    },
   ],
 });
 

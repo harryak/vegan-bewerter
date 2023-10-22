@@ -11,6 +11,7 @@ declare module 'vue' {
     CardGrid: typeof import('./src/components/CardGrid.vue')['default']
     ChipElement: typeof import('./src/components/ChipElement.vue')['default']
     FloatingActionButton: typeof import('./src/components/FloatingActionButton.vue')['default']
+    ProductForm: typeof import('./src/components/ProductForm.vue')['default']
     ProductGridFilter: typeof import('./src/components/ProductGridFilter.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
