@@ -5,6 +5,7 @@
 @import url("_card_grid.scss");
 @import url("_chip_element.scss");
 @import url("_floating_action_button.scss");
+@import url("_text_input.scss");
 
 body {
   margin: 0;
@@ -13,6 +14,8 @@ body {
 
 #app {
   color: var(--color-text);
+  background-color: var(--color-background);
+
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

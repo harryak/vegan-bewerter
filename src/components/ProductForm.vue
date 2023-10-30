@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="text" v-model="ean" />
+    <text-input label="EAN" :initialValue="ean" />
   </div>
 </template>
 

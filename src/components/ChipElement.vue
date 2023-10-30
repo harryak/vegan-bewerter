@@ -24,7 +24,9 @@
 import { reactive, ref } from "vue";
 
 const uid =
-  Date.now().toString(36) + Math.random().toString(36).substring(2, 12);
+  "chip-" +
+  Date.now().toString(36) +
+  Math.random().toString(36).substring(2, 12);
 
 import CheckmarkSVGUrl from "@/common/assets/icons/material-check.svg";
 

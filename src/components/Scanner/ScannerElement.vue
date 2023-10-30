@@ -1,3 +1,10 @@
+<template>
+  <div id="interactive" class="viewport scanner">
+    <video />
+    <canvas class="drawingBuffer" />
+  </div>
+</template>
+
 <script lang="ts" setup>
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import adapter from "webrtc-adapter";
@@ -75,13 +82,6 @@ onMounted(() => {
   Quagga.onDetected(onDetected);
 });
 </script>
-
-<template>
-  <div id="interactive" class="viewport scanner">
-    <video />
-    <canvas class="drawingBuffer" />
-  </div>
-</template>
 
 <style lang="scss" scoped>
 #interactive {
