@@ -7,6 +7,8 @@
 @import url("_floating_action_button.scss");
 @import url("_text_input.scss");
 
+@import url("_dimension_utitilies.scss");
+
 body {
   margin: 0;
   padding: 0;
@@ -45,4 +47,10 @@ body {
       margin: -1rem;
     }
   }
+}
+
+.product-grid-filter {
+  display: flex;
+  gap: 0.25rem;
+  margin: 0 0 1rem 0;
 }

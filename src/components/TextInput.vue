@@ -2,12 +2,22 @@
   <div class="text-input-wrapper">
     <input
       :class="inputClasses"
-      type="text"
       :id="uid"
+      :maxlength="props.maxlength"
+      :required="props.required"
+      type="text"
       name="uid"
       v-model="inputModel"
     />
     <label class="text-input-label" :for="uid">{{ props.label }}</label>
+    <div class="text-input-messages">
+      <p class="validation-message" v-if="validationMessage">
+        {{ validationMessage }}
+      </p>
+      <p class="character-counter" v-if="props.maxlength">
+        {{ `${inputModel.length}/${props.maxlength}` }}
+      </p>
+    </div>
   </div>
 </template>
 
@@ -28,12 +38,33 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  validation: {
+    type: Function,
+    required: false,
+  },
+  required: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  maxlength: {
+    type: Number,
+    required: false,
+  },
 });
 
 const inputModel = ref<string>(props.initialValue ?? "");
 
+const validationMessage = computed<string>(() => {
+  if (props.required && !inputModel.value) {
+    return "Required";
+  }
+  return props.validation ? props.validation(inputModel.value) : "";
+});
+
 const inputClasses = reactive({
   "text-input": true,
   filled: computed(() => inputModel.value !== ""),
+  "has-message": computed(() => validationMessage.value !== ""),
 });
 </script>

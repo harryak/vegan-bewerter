@@ -1,5 +1,5 @@
 <template>
-  <div style="display: flex; gap: 0.25rem; margin: 1rem 0">
+  <div class="product-grid-filter">
     <template v-for="brand in brandsToSelect" :key="brand.id">
       <chip-element>{{ brand.name }}</chip-element>
     </template>
