@@ -19,9 +19,12 @@
     max-width: 100%;
 
     background-color: #fff;
+    transform: scale(1);
+
     transition:
         background-color ease-in-out 250ms,
-        max-width ease-in-out 250ms,
+        max-width linear 0ms,
+        transform linear 125ms,
         border-width linear 0ms 10ms;
 
     user-select: none;
@@ -127,9 +130,11 @@
     &.hidden {
         border-width: 0;
         max-width: 0;
+        transform: scale(0%);
         transition:
             background-color ease-in-out 250ms,
-            max-width ease-in-out 250ms,
+            max-width linear 250ms,
+            transform linear 0ms 250ms,
             border-width linear 0ms 250ms;
         overflow: hidden;
     }

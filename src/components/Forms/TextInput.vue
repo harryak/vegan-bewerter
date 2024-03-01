@@ -8,8 +8,18 @@
             type="text"
             name="uid"
             v-model="inputModel"
+            @keypress.enter="$emit('submit')"
         />
-        <label class="text-input-label" :for="uid">{{ props.label }}</label>
+        <label class="text-input-label" :for="uid" v-if="props.label">{{ props.label }}</label>
+        <button
+            type="submit"
+            class="text-input-submit-button"
+            @click.prevent="$emit('submit')"
+            v-ripple
+            v-if="submitButton"
+        >
+            <AddSVGComponent v-if="submitButton === 'add'" />
+        </button>
         <div class="text-input-messages">
             <p class="validation-message" v-if="validationMessage">
                 {{ validationMessage }}
@@ -24,12 +34,15 @@
 <script lang="ts" setup>
 import { computed, reactive } from "vue";
 
+import AddSVGComponent from "@/common/assets/icons/material-add.svg?component";
+
 const uid = "text-input-" + Date.now().toString(36) + Math.random().toString(36).substring(2, 12);
 
 const props = defineProps({
     label: {
         type: String,
-        required: true,
+        required: false,
+        default: "",
     },
     validation: {
         type: Function,
@@ -44,9 +57,19 @@ const props = defineProps({
         type: Number,
         required: false,
     },
+    submitButton: {
+        type: String,
+        required: false,
+        default: "",
+        validator: (value: string) => {
+            return ["submit", "add"].indexOf(value) >= 0;
+        },
+    },
 });
 
 const inputModel = defineModel<string>({ default: "" });
+
+defineEmits(["submit"]);
 
 const validationMessage = computed<string>(() => {
     if (props.required && !inputModel.value) {

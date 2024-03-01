@@ -5,5 +5,9 @@
         display: flex;
         flex-direction: row;
         gap: 0.25rem;
+
+        .chip.hidden {
+            margin-right: -0.25rem;
+        }
     }
 }

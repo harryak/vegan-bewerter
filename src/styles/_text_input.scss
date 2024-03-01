@@ -73,6 +73,35 @@
         }
     }
 
+    .text-input-submit-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        position: absolute;
+        right: 1rem;
+        top: calc(0.5rem - 0.0625rem);
+
+        height: 2rem;
+        width: 2rem;
+
+        background-color: transparent;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+
+        svg path {
+            fill: var(--color-main);
+        }
+
+        &:focus,
+        &:focus-visible,
+        &:active {
+            outline: none;
+            background-color: var(--color-shadow);
+        }
+    }
+
     .text-input-messages {
         display: flex;
         flex-direction: row;
