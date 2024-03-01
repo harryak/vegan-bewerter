@@ -1,11 +1,11 @@
 <template>
-  <title-bar>
-    <div>Vegan-Bewerter</div>
-  </title-bar>
+    <title-bar>
+        <div>Vegan-Bewerter</div>
+    </title-bar>
 
-  <main>
-    <RouterView />
-  </main>
+    <main>
+        <RouterView />
+    </main>
 </template>
 
 <script lang="ts" setup>

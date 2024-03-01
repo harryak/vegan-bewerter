@@ -1,6 +1,6 @@
 <template>
-  <!-- <scanner-element @codeDetected="codeDetected" v-if="!currentEANCode" /> -->
-  <product-form :ean-code="currentEANCode" />
+    <!-- <scanner-element @codeDetected="codeDetected" v-if="!currentEANCode" /> -->
+    <product-form :ean-code="currentEANCode" />
 </template>
 
 <script lang="ts" setup>

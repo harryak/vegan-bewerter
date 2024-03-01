@@ -1,0 +1,9 @@
+.chip-input-wrapper {
+    margin-bottom: 0.5rem;
+
+    .chip-input {
+        display: flex;
+        flex-direction: row;
+        gap: 0.25rem;
+    }
+}

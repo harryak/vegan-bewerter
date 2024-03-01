@@ -1,0 +1,9 @@
+.chip-filter-wrapper {
+    margin-bottom: 0.5rem;
+
+    .chip-filter {
+        display: flex;
+        flex-direction: row;
+        gap: 0.25rem;
+    }
+}

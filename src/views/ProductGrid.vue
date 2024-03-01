@@ -1,23 +1,20 @@
 <template>
-  <product-grid-filter />
-  <card-grid clickable>
-    <card-element
-      v-for="(product, index) in productsStore.products"
-      :key="product.id"
-      :tabindex="index + 1"
-      :imageUrl="exampleImageUrl"
-      @click="console.log('click')"
-      @keypress.enter.prevent="console.log('click')"
-    >
-      <template v-slot:title>
-        {{ product.name }}
-      </template>
-    </card-element>
-  </card-grid>
-  <floating-action-button
-    icon="plus"
-    @click="$router.push({ name: 'product-new' })"
-  />
+    <product-grid-filter />
+    <card-grid clickable>
+        <card-element
+            v-for="(product, index) in productsStore.products"
+            :key="product.id"
+            :tabindex="index + 1"
+            :imageUrl="exampleImageUrl"
+            @click="console.log('click')"
+            @keypress.enter.prevent="console.log('click')"
+        >
+            <template v-slot:title>
+                {{ product.name }}
+            </template>
+        </card-element>
+    </card-grid>
+    <floating-action-button icon="plus" @click="$router.push({ name: 'product-new' })" />
 </template>
 
 <script lang="ts" setup>

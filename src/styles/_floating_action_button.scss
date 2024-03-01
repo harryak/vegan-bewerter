@@ -1,69 +1,69 @@
 .floating-action-button-container {
-  background-color: var(--fab-color);
-
-  border: none;
-  border-radius: 1rem;
-
-  box-shadow: 0.15rem 0.15rem 0.3rem var(--color-shadow);
-
-  transition:
-    background-color ease-in-out 250ms,
-    box-shadow ease-in-out 250ms;
-
-  padding: 0;
-
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-
-  @media (min-width: 1200px) {
-    bottom: 2rem;
-    right: calc((100vw - var(--content-width)) / 2);
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: var(--fab-color-hover);
-  }
-
-  &:focus-visible {
-    outline: 0.15rem solid var(--fab-border-color);
-  }
-
-  &:active {
-    box-shadow: 0.075rem 0.075rem 0.15rem var(--color-shadow);
-  }
-
-  & > object.icon {
-    height: 1.5rem;
-    width: 1.5rem;
-
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    z-index: 0;
-  }
-
-  .floating-action-button {
-    background-color: transparent;
+    background-color: var(--fab-color);
 
     border: none;
     border-radius: 1rem;
 
-    cursor: pointer;
+    box-shadow: 0.15rem 0.15rem 0.3rem var(--color-shadow);
 
-    position: relative;
-    height: 3.5rem;
-    width: 3.5rem;
-    z-index: 1;
+    transition:
+        background-color ease-in-out 250ms,
+        box-shadow ease-in-out 250ms;
+
+    padding: 0;
+
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+
+    @media (min-width: 1200px) {
+        bottom: 2rem;
+        right: calc((100vw - var(--content-width)) / 2);
+    }
 
     &:hover,
     &:focus,
-    &:focus-visible,
     &:active {
-      background-color: transparent;
-      outline: none;
+        background-color: var(--fab-color-hover);
     }
-  }
+
+    &:focus-visible {
+        outline: 0.15rem solid var(--fab-border-color);
+    }
+
+    &:active {
+        box-shadow: 0.075rem 0.075rem 0.15rem var(--color-shadow);
+    }
+
+    & > object.icon {
+        height: 1.5rem;
+        width: 1.5rem;
+
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        z-index: 0;
+    }
+
+    .floating-action-button {
+        background-color: transparent;
+
+        border: none;
+        border-radius: 1rem;
+
+        cursor: pointer;
+
+        position: relative;
+        height: 3.5rem;
+        width: 3.5rem;
+        z-index: 1;
+
+        &:hover,
+        &:focus,
+        &:focus-visible,
+        &:active {
+            background-color: transparent;
+            outline: none;
+        }
+    }
 }
