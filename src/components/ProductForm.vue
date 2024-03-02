@@ -33,6 +33,11 @@ const name = ref<string>("");
 const productAttributes = ref<string[]>([]);
 
 const validations: { [inputName: string]: (value: string) => string } = {
-    ean: (value: string) => (value === parseInt(value).toString() ? "" : "Muss numerisch sein."),
+    ean: (value: string) =>
+        value === parseInt(value).toString()
+            ? value.length === 13
+                ? ""
+                : "Is exactly 13 digits."
+            : "Has to be numeric.",
 };
 </script>

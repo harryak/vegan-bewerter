@@ -1,5 +1,28 @@
 .chip-input-wrapper {
     margin-bottom: 0.5rem;
+    position: relative;
+
+    .chip-input-dropdown-wrapper {
+        position: absolute;
+        top: 2.75rem;
+        z-index: 1;
+
+        max-height: 0;
+        width: 100%;
+
+        overflow: hidden;
+
+        transition: max-height ease-in-out 250ms;
+
+        &.open {
+            max-height: 80vh;
+        }
+    }
+
+    .chip-input-new {
+        position: relative;
+        z-index: 2;
+    }
 
     .chip-input {
         display: flex;

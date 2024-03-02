@@ -8,12 +8,16 @@
             type="text"
             name="uid"
             v-model="inputModel"
+            @focus="$emit('focus')"
+            @blur="$emit('blur')"
             @keypress.enter="$emit('submit')"
         />
         <label class="text-input-label" :for="uid" v-if="props.label">{{ props.label }}</label>
         <button
             type="submit"
             class="text-input-submit-button"
+            @focus="$emit('focus')"
+            @blur="$emit('blur')"
             @click.prevent="$emit('submit')"
             v-ripple
             v-if="submitButton"
@@ -65,11 +69,16 @@ const props = defineProps({
             return ["submit", "add"].indexOf(value) >= 0;
         },
     },
+    isActive: {
+        type: Boolean,
+        required: false,
+        default: false,
+    },
 });
 
 const inputModel = defineModel<string>({ default: "" });
 
-defineEmits(["submit"]);
+defineEmits(["submit", "focus", "blur"]);
 
 const validationMessage = computed<string>(() => {
     if (props.required && !inputModel.value) {
@@ -82,5 +91,6 @@ const inputClasses = reactive({
     "text-input": true,
     filled: computed(() => inputModel.value !== ""),
     "has-message": computed(() => validationMessage.value !== ""),
+    active: computed(() => props.isActive),
 });
 </script>
