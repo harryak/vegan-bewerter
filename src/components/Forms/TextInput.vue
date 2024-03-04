@@ -65,8 +65,8 @@ const props = defineProps({
         type: String,
         required: false,
         default: "",
-        validator: (value: string) => {
-            return ["submit", "add"].indexOf(value) >= 0;
+        validator(value: unknown): boolean {
+            return typeof value === "string" && ["", "submit", "add"].indexOf(value) >= 0;
         },
     },
     isActive: {

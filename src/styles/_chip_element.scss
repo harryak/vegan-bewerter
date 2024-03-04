@@ -23,6 +23,7 @@
 
     transition:
         background-color ease-in-out 250ms,
+        height linear 0ms,
         max-width linear 0ms,
         transform linear 125ms,
         border-width linear 0ms 10ms;
@@ -129,10 +130,13 @@
 
     &.hidden {
         border-width: 0;
+        height: 0;
+        min-height: 0;
         max-width: 0;
         transform: scale(0%);
         transition:
             background-color ease-in-out 250ms,
+            height linear 250ms,
             max-width linear 250ms,
             transform linear 0ms 250ms,
             border-width linear 0ms 250ms;

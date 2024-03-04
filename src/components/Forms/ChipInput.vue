@@ -1,6 +1,6 @@
 <template>
-    <div class="chip-input-wrapper" :id="uid">
-        <TextInput
+    <div :class="{ 'chip-input-wrapper': true, open: isDropdownOpen }" :id="uid">
+        <text-input
             :label="props.label"
             submitButton="add"
             class="chip-input-new"
@@ -19,7 +19,7 @@
             v-ripple
         />
         <div :class="{ 'chip-input-dropdown-wrapper': true, open: isDropdownOpen }" ref="dropdownElement">
-            <DropdownList
+            <dropdown-list
                 :items="items"
                 :selectedItems="modelValue"
                 :isOpen="isDropdownOpen"
@@ -39,11 +39,16 @@
                 {{ inputItem.label }}
             </chip-element>
         </div>
+        <div class="chip-input-messages">
+            <p class="validation-message" v-if="validationMessage">
+                {{ validationMessage }}
+            </p>
+        </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 
 import SVGDownComponent from "@/common/assets/icons/material-down.svg?component";
 
@@ -58,12 +63,25 @@ const props = defineProps({
         type: Array<{ id: string; label: string }>,
         required: true,
     },
+    required: {
+        type: Boolean,
+        required: false,
+        default: false,
+    },
+    validation: {
+        type: Function,
+        required: false,
+    },
     modelValue: {
         type: Array<string>,
         default: [],
     },
 });
 const emit = defineEmits(["update:modelValue"]);
+
+onMounted(() => {
+    document.getElementById(uid)?.parentElement?.classList.add("preserve-3d");
+});
 
 const dropdownElement = ref<HTMLElement | null>(null);
 const isDropdownOpen = ref(false);
@@ -140,4 +158,11 @@ const focusFirstDropdownItem = () => {
 const focusLastDropdownItem = () => {
     (dropdownElement.value?.querySelectorAll("li[tabindex='0']:last-child")[0] as HTMLElement).focus();
 };
+
+const validationMessage = computed<string>(() => {
+    if (props.required && props.modelValue.length < 1) {
+        return "Required";
+    }
+    return props.validation ? props.validation(props.modelValue) : "";
+});
 </script>

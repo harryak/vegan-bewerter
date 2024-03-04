@@ -1,12 +1,21 @@
 .chip-input-wrapper {
     margin-bottom: 0.5rem;
     position: relative;
+    z-index: 1;
+
+    transform: translateZ(0);
+    transition: transform linear 0ms 250ms;
+
+    &.open {
+        transform: translateZ(1px);
+        transition: transform linear 0ms;
+    }
 
     .chip-input-dropdown-toggle {
         position: absolute;
         top: 0.5rem;
         right: 1rem;
-        z-index: 999;
+        z-index: 2;
 
         cursor: pointer;
         border-radius: 50%;
@@ -25,7 +34,7 @@
 
     .chip-input-dropdown-wrapper {
         position: absolute;
-        top: 2.75rem;
+        top: 3rem;
         z-index: 1;
 
         max-height: 0;
@@ -42,20 +51,57 @@
 
     .chip-input-new {
         position: relative;
-        z-index: 2;
+        z-index: 1;
 
         .text-input-submit-button {
             right: 3rem;
+        }
+
+        .text-input-messages {
+            display: none;
         }
     }
 
     .chip-input {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         gap: 0.25rem;
 
         .chip.hidden {
             margin-right: -0.25rem;
+        }
+    }
+
+    .chip-input-messages {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        font-size: 0.75rem;
+        line-height: 1rem;
+
+        height: 1rem;
+
+        margin: 0.25rem 0 0 0;
+        padding: 0 1rem;
+
+        p {
+            color: var(--color-text-hightlight-1);
+
+            margin: 0;
+            padding: 0;
+
+            &.validation-message {
+                justify-self: flex-start;
+
+                color: var(--color-error);
+            }
+
+            &.character-counter {
+                justify-self: flex-end;
+                margin-left: auto;
+            }
         }
     }
 }

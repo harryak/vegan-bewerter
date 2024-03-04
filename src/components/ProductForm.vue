@@ -9,6 +9,8 @@
             :validation="validations.ean"
         />
         <text-input label="Name" v-model="name" :required="true" />
+        <dropdown-element label="Brand" :items="possibleBrands" :required="true" v-model="brand" />
+        <chip-input label="Stores" :items="possibleStores" :required="true" v-model="stores" />
         <chip-input label="Attributes" :items="possibleProductAttributes" v-model="productAttributes" />
     </div>
 </template>
@@ -23,6 +25,14 @@ const props = defineProps({
     },
 });
 
+const possibleBrands = [
+    { id: "vegeta", label: "Vegeta" },
+    { id: "vogan", label: "Vogan" },
+];
+const possibleStores = [
+    { id: "aldi", label: "Aldi" },
+    { id: "edeka", label: "Edeka" },
+];
 const possibleProductAttributes = [
     { id: "cheesy", label: "Cheesy" },
     { id: "hearty", label: "Hearty" },
@@ -30,6 +40,8 @@ const possibleProductAttributes = [
 
 const ean = ref(props.eanCode);
 const name = ref<string>("");
+const brand = ref<string>("");
+const stores = ref<string[]>([]);
 const productAttributes = ref<string[]>([]);
 
 const validations: { [inputName: string]: (value: string) => string } = {
