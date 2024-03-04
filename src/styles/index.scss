@@ -1,15 +1,17 @@
 @import url("_theme.scss");
 
 @import url("_title_bar.scss");
-@import url("_card_element.scss");
-@import url("_card_grid.scss");
-@import url("_chip_element.scss");
-@import url("_chip_filter.scss");
-@import url("_chip_input.scss");
-@import url("_dropdown_element.scss");
-@import url("_dropdown_list.scss");
-@import url("_floating_action_button.scss");
-@import url("_text_input.scss");
+
+@import url("./components/_card_element.scss");
+@import url("./components/_card_grid.scss");
+@import url("./components/_floating_action_button.scss");
+
+@import url("./forms/_chip_element.scss");
+@import url("./forms/_chip_filter.scss");
+@import url("./forms/_chip_input.scss");
+@import url("./forms/_dropdown_element.scss");
+@import url("./forms/_dropdown_list.scss");
+@import url("./forms/_text_input.scss");
 
 @import url("_utilities.scss");
 

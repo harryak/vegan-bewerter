@@ -7,15 +7,15 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    CardElement: typeof import('./src/components/CardElement.vue')['default']
-    CardGrid: typeof import('./src/components/CardGrid.vue')['default']
+    CardElement: typeof import('./src/components/Components/CardElement.vue')['default']
+    CardGrid: typeof import('./src/components/Components/CardGrid.vue')['default']
     ChipElement: typeof import('./src/components/Forms/ChipElement.vue')['default']
     ChipFilter: typeof import('./src/components/Forms/ChipFilter.vue')['default']
     ChipInput: typeof import('./src/components/Forms/ChipInput.vue')['default']
     copy: (typeof import("./src/components/Forms/ChipFilter copy.vue"))["default"]
     DropdownElement: typeof import('./src/components/Forms/DropdownElement.vue')['default']
     DropdownList: typeof import('./src/components/Forms/DropdownList.vue')['default']
-    FloatingActionButton: typeof import('./src/components/FloatingActionButton.vue')['default']
+    FloatingActionButton: typeof import('./src/components/Components/FloatingActionButton.vue')['default']
     ProductForm: typeof import('./src/components/ProductForm.vue')['default']
     ProductGridFilter: typeof import('./src/components/ProductGridFilter.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
