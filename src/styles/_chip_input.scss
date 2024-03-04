@@ -2,6 +2,27 @@
     margin-bottom: 0.5rem;
     position: relative;
 
+    .chip-input-dropdown-toggle {
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+        z-index: 999;
+
+        cursor: pointer;
+        border-radius: 50%;
+        fill: var(--color-main);
+
+        height: 2rem;
+        width: 2rem;
+
+        transform: rotate(0deg);
+        transition: transform ease-in-out 250ms;
+
+        &.open {
+            transform: rotate(180deg);
+        }
+    }
+
     .chip-input-dropdown-wrapper {
         position: absolute;
         top: 2.75rem;
@@ -15,13 +36,17 @@
         transition: max-height ease-in-out 250ms;
 
         &.open {
-            max-height: 80vh;
+            max-height: calc(10rem + 0.0625rem * 2);
         }
     }
 
     .chip-input-new {
         position: relative;
         z-index: 2;
+
+        .text-input-submit-button {
+            right: 3rem;
+        }
     }
 
     .chip-input {

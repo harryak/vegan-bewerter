@@ -1,5 +1,5 @@
 <template>
-    <div class="chip-input-wrapper">
+    <div class="chip-input-wrapper" :id="uid">
         <TextInput
             :label="props.label"
             submitButton="add"
@@ -12,6 +12,11 @@
             @submit="addNewItem(newItemInput)"
             @keydown.down.stop.prevent="focusFirstDropdownItem()"
             @keydown.up.stop.prevent="focusLastDropdownItem()"
+        />
+        <SVGDownComponent
+            :class="{ 'chip-input-dropdown-toggle': true, open: isDropdownOpen }"
+            @click="toggleDropdown()"
+            v-ripple
         />
         <div :class="{ 'chip-input-dropdown-wrapper': true, open: isDropdownOpen }" ref="dropdownElement">
             <DropdownList
@@ -28,7 +33,7 @@
                 :key="inputItem.id"
                 :hidden="modelValue.indexOf(inputItem.id) < 0"
                 type="input"
-                @clear="removeItem(inputItem.id)"
+                @clear="removeChip(inputItem.id)"
                 v-for="inputItem in chipElements"
             >
                 {{ inputItem.label }}
@@ -39,6 +44,10 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
+
+import SVGDownComponent from "@/common/assets/icons/material-down.svg?component";
+
+const uid = "dropdown-" + Date.now().toString(36) + Math.random().toString(36).substring(2, 12);
 
 const props = defineProps({
     label: {
@@ -63,10 +72,25 @@ const newItemInput = ref("");
 
 const openDropdown = () => {
     isDropdownOpen.value = true;
+
+    document.addEventListener("click", closeDropdown, false);
 };
 
-const closeDropdown = () => {
+const closeDropdown = (event: MouseEvent | undefined = undefined) => {
+    if (event?.target && document.getElementById(uid)?.contains(event.target as HTMLElement)) {
+        return;
+    }
+
     isDropdownOpen.value = false;
+    document.removeEventListener("click", closeDropdown, false);
+};
+
+const toggleDropdown = () => {
+    if (isDropdownOpen.value) {
+        closeDropdown(undefined);
+    } else {
+        openDropdown();
+    }
 };
 
 const addChip = (chipId: string) => {
@@ -75,6 +99,11 @@ const addChip = (chipId: string) => {
     }
 
     emit("update:modelValue", [...props.modelValue, chipId]);
+};
+
+const removeChip = (id: string) => {
+    const index = props.modelValue.indexOf(id);
+    emit("update:modelValue", props.modelValue.toSpliced(index, 1));
 };
 
 const addNewItem = (newItemLabel: string) => {
@@ -100,13 +129,8 @@ const toggleItemSelection = (itemId: string) => {
     if (props.modelValue.indexOf(itemId) < 0) {
         addChip(itemId);
     } else {
-        removeItem(itemId);
+        removeChip(itemId);
     }
-};
-
-const removeItem = (id: string) => {
-    const index = props.modelValue.indexOf(id);
-    emit("update:modelValue", props.modelValue.toSpliced(index, 1));
 };
 
 const focusFirstDropdownItem = () => {

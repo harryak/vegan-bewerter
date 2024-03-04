@@ -7,7 +7,11 @@
     border-radius: 0 0 0.25rem 0.25rem;
 
     background-color: var(--color-background);
+    overflow-y: auto;
+    scrollbar-width: thin;
 
+    max-height: calc(10rem);
+    height: 100%;
     margin: 0;
     padding: 0;
 

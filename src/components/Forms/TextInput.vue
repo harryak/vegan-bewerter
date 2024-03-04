@@ -9,7 +9,7 @@
             name="uid"
             v-model="inputModel"
             @focus="$emit('focus')"
-            @blur="$emit('blur')"
+            @blur.stop.prevent="$emit('blur')"
             @keypress.enter="$emit('submit')"
         />
         <label class="text-input-label" :for="uid" v-if="props.label">{{ props.label }}</label>
