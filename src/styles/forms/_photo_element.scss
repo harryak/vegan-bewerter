@@ -1,0 +1,207 @@
+.photo-element-wrapper {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    max-width: 100%;
+
+    .photo-element-output {
+        max-width: 100%;
+        max-height: 0;
+        margin: 0 auto;
+    }
+
+    .photo-element-output-toolbar {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: flex-end;
+        gap: 1rem;
+
+        padding: 0 0.5rem;
+        width: 100%;
+
+        .photo-element-new {
+            background-color: var(--color-background);
+
+            border: 0.25rem dashed var(--color-main);
+            border-radius: 0.5rem;
+
+            height: 16rem;
+            width: 100%;
+            padding: 0;
+
+            cursor: pointer;
+            transition:
+                background-color ease-in-out 250ms,
+                border-color ease-in-out 250ms;
+
+            &:hover {
+                background-color: var(--color-main-soft);
+                border-color: var(--color-main-shade-1);
+
+                .icon {
+                    fill: var(--color-main-shade-1);
+                }
+            }
+
+            .icon {
+                fill: var(--color-main);
+
+                height: 2rem;
+                width: 2rem;
+
+                transition: fill ease-in-out 250ms;
+            }
+        }
+
+        .photo-element-delete {
+            display: none;
+
+            cursor: pointer;
+            background-color: var(--color-main);
+
+            height: 2rem;
+            width: 2rem;
+
+            border: none;
+            border-radius: 50%;
+
+            &:hover {
+                background-color: var(--color-main-shade-1);
+            }
+
+            .icon {
+                fill: var(--color-text-inverted);
+            }
+        }
+    }
+
+    &.has-photo {
+        .photo-element-output {
+            max-height: 16rem;
+        }
+
+        .photo-element-output-toolbar {
+            position: relative;
+            top: -4.5rem;
+            right: 0.5rem;
+
+            margin-bottom: -4rem;
+
+            .photo-element-new {
+                background-color: var(--color-main);
+
+                height: 4rem;
+                width: 4rem;
+
+                border: none;
+                border-radius: 50%;
+
+                &:hover {
+                    background-color: var(--color-main-shade-1);
+                }
+
+                .icon {
+                    fill: var(--color-text-inverted);
+                }
+            }
+
+            .photo-element-delete {
+                display: block;
+            }
+        }
+    }
+}
+
+.photo-element-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: translate(50vw, 50vh);
+
+    height: 0;
+    width: 0;
+
+    overflow: hidden;
+
+    transition: all ease-in-out 250ms;
+
+    background-color: var(--color-overlay);
+
+    &.open {
+        transform: translate(0, 0);
+
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .icon-close {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+
+        width: 4rem;
+        height: 4rem;
+
+        cursor: pointer;
+        fill: var(--color-main);
+        transition: fill ease-in-out 250ms;
+
+        &:hover,
+        &:focus,
+        &:focus-visible,
+        &:active {
+            fill: var(--color-main-shade-1);
+        }
+    }
+
+    .photo-element-camera-toolbar {
+        position: absolute;
+        bottom: 2rem;
+    }
+
+    .photo-element-camera-button-wrapper {
+        border: 4px solid var(--color-main);
+        border-radius: 50%;
+
+        padding: 4px;
+    }
+
+    .photo-element-camera-button {
+        background-color: var(--color-main);
+        color: transparent;
+        cursor: pointer;
+
+        border: 2px solid transparent;
+        border-radius: 50%;
+
+        height: 6rem;
+        width: 6rem;
+        padding: 0;
+
+        transition: background-color ease-in-out 250ms;
+
+        &:hover,
+        &:focus,
+        &:focus-visible,
+        &:active {
+            background-color: var(--color-main-shade-1);
+        }
+    }
+
+    .photo-element-livestream {
+        max-height: 100%;
+        max-width: 100%;
+    }
+}

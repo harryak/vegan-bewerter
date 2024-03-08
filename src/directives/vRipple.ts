@@ -32,7 +32,7 @@ export const vRipple: ObjectDirective = {
             // Get border to avoid offsetting on ripple container position
             const targetBorder = parseInt(getComputedStyle(target).borderWidth.replace("px", ""));
 
-            // Get necessary constiables
+            // Get necessary constants
             const boundingRectangle = target.getBoundingClientRect(),
                 left = boundingRectangle.left,
                 top = boundingRectangle.top,

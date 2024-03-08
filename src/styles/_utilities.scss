@@ -2,6 +2,19 @@
     width: 50%;
 }
 
+.col-2 {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+
+    & > .col-left,
+    & > .col-right,
+    & > .col {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
 .preserve-3d {
     transform-style: preserve-3d;
 }

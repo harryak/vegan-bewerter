@@ -13,6 +13,7 @@
     --color-background: white;
 
     --color-shadow: #090b0a4f;
+    --color-overlay: #090b0ab9;
 
     --card-grid-gutter-width: 0.5rem;
     --card-color: #ebf7d8;
@@ -25,7 +26,7 @@
     --dropdown-color-border: var(--color-main-shade-1);
     --dropdown-color-hover: var(--color-main-soft);
 
-    --fab-color: #348c1e;
-    --fab-color-hover: #256515;
-    --fab-border-color: #256515;
+    --fab-color: var(--color-main);
+    --fab-color-hover: var(--color-main-shade-1);
+    --fab-border-color: var(--color-main-shade-1);
 }

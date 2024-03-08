@@ -1,17 +1,22 @@
 <template>
-    <div class="w-50">
-        <text-input
-            label="EAN"
-            type="text"
-            v-model="ean"
-            :required="true"
-            :maxlength="13"
-            :validation="validations.ean"
-        />
-        <text-input label="Name" v-model="name" :required="true" />
-        <dropdown-element label="Brand" :items="possibleBrands" :required="true" v-model="brand" />
-        <chip-input label="Stores" :items="possibleStores" :required="true" v-model="stores" />
-        <chip-input label="Attributes" :items="possibleProductAttributes" v-model="productAttributes" />
+    <div class="col-2">
+        <div class="col-left">
+            <text-input
+                label="EAN"
+                type="text"
+                v-model="ean"
+                :required="true"
+                :maxlength="13"
+                :validation="validations.ean"
+            />
+            <text-input label="Name" v-model="name" :required="true" />
+            <dropdown-element label="Brand" :items="possibleBrands" :required="true" v-model="brand" />
+            <chip-input label="Stores" :items="possibleStores" :required="true" v-model="stores" />
+            <chip-input label="Attributes" :items="possibleProductAttributes" v-model="productAttributes" />
+        </div>
+        <div class="col-right">
+            <photo-element />
+        </div>
     </div>
 </template>
 
