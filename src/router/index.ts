@@ -2,13 +2,18 @@ import { createRouter, createWebHistory, Router } from "vue-router";
 
 const ProductGrid = () => import("@views/ProductGrid.vue");
 const ProductNew = () => import("@views/ProductNew.vue");
+const StartingPage = () => import("@views/StartingPage.vue");
 
 const router: Router = createRouter({
     history: createWebHistory(),
     routes: [
         {
             path: "/",
-            alias: "/products",
+            name: "scan",
+            component: StartingPage,
+        },
+        {
+            path: "/products",
             name: "products",
             component: ProductGrid,
         },

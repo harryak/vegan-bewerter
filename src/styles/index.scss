@@ -34,13 +34,13 @@ body {
     min-height: 100vh;
     --content-width: 100vw;
 
-    @media (min-width: 1200px) {
-        --content-width: 1200px;
-    }
-
     overflow-x: hidden;
 
     scrollbar-width: thin;
+
+    @media (min-width: 1200px) {
+        --content-width: 1200px;
+    }
 
     main {
         box-sizing: border-box;

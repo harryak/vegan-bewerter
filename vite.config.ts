@@ -5,12 +5,12 @@ import svgLoader from "vite-svg-loader";
 import viteESLint from "vite-plugin-eslint";
 import { VitePWA } from "vite-plugin-pwa";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const path = require("path");
+import path from "path";
 
 function resolve(dir: string) {
     return path.join(__dirname, dir);
 }
+
 // https://vitejs.dev/config/
 // https://github.com/vitejs/vite/issues/1930 .env
 export default defineConfig({

@@ -1,0 +1,13 @@
+{
+    "preID": "_1",
+    "type": 0,
+    "name": "Test Brand",
+    "userID": "58A671E1-F765-443A-F7AB-08DC4FDECD2C",
+    "dateTime": "2020-01-01 01:00:00+01",
+
+    "brandID": "8DE80F1C-DCBD-4734-BC8A-08DC4FDECD16",
+    "eaNs": ["4056489850359"],
+    "storeIDs": ["A097A034-54C2-43BC-FACF-08DC4FDECD29"],
+    "categoryIDs": ["66A7343F-E6EE-4531-6EB7-08DC4FDECD25"],
+    "rating": 4.5
+}

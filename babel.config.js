@@ -1,17 +1,15 @@
-module.exports = {
-  presets: [
+export const presets = [
     [
-      "@babel/preset-env",
-      {
-        targets: {
-          node: "current",
+        "@babel/preset-env",
+        {
+            targets: {
+                node: "current",
+            },
         },
-      },
     ],
-  ],
-  env: {
+];
+export const env = {
     development: {
-      plugins: ["dynamic-import-node"],
+        plugins: ["dynamic-import-node"],
     },
-  },
 };
