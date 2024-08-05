@@ -29,8 +29,9 @@
 
 <script lang="ts" setup>
 import { computed, reactive, ref, watch } from "vue";
+import { generateUid } from "@/utilities/generateUid";
 
-const uid = "chip-" + Date.now().toString(36) + Math.random().toString(36).substring(2, 12);
+const uid = "chip-" + generateUid();
 
 import CheckmarkSVGComponent from "@/common/assets/icons/material-check.svg?component";
 import ClearSVGComponent from "@/common/assets/icons/material-close.svg?component";

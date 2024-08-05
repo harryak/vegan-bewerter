@@ -34,7 +34,9 @@ import { onMounted, ref } from "vue";
 
 import SVGDownComponent from "@/common/assets/icons/material-down.svg?component";
 
-const uid = "dropdown-" + Date.now().toString(36) + Math.random().toString(36).substring(2, 12);
+import { generateUid } from "@/utilities/generateUid";
+
+const uid = "dropdown-" + generateUid();
 
 const props = defineProps({
     label: {

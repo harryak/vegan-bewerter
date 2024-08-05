@@ -40,7 +40,9 @@ import { computed, reactive } from "vue";
 
 import AddSVGComponent from "@/common/assets/icons/material-add.svg?component";
 
-const uid = "text-input-" + Date.now().toString(36) + Math.random().toString(36).substring(2, 12);
+import { generateUid } from "@/utilities/generateUid";
+
+const uid = "text-input-" + generateUid();
 
 const props = defineProps({
     label: {

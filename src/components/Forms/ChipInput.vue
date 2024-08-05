@@ -52,7 +52,9 @@ import { computed, onMounted, ref } from "vue";
 
 import SVGDownComponent from "@/common/assets/icons/material-down.svg?component";
 
-const uid = "dropdown-" + Date.now().toString(36) + Math.random().toString(36).substring(2, 12);
+import { generateUid } from "@/utilities/generateUid";
+
+const uid = "dropdown-" + generateUid();
 
 const props = defineProps({
     label: {
@@ -133,7 +135,7 @@ const addNewItem = (newItemLabel: string) => {
 
     let idCandidate: string;
     do {
-        idCandidate = Math.random().toString(36).substring(2, 12);
+        idCandidate = generateUid();
     } while (chipElements.value.find(item => item.id === idCandidate) !== undefined);
 
     chipElements.value.push({ id: idCandidate, label: newItemLabel });

@@ -18,5 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-const uid = Date.now().toString(36) + Math.random().toString(36).substring(2);
+import { generateUid } from "@/utilities/generateUid";
+
+const uid = generateUid();
 </script>

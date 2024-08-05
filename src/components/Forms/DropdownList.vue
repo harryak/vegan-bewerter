@@ -37,7 +37,6 @@ defineEmits(["focus", "blur", "selected"]);
 const isOpen = defineModel("isOpen");
 
 const focusNextItem = (event: KeyboardEvent): void => {
-    console.log("NEXT", event);
     const next = (event.currentTarget as HTMLElement)?.nextElementSibling;
     if (next) {
         (next as HTMLElement).focus();
