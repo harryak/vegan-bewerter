@@ -15,11 +15,13 @@
     },
     "dependencies": {
         "@ericblade/quagga2": "^1.8.4",
-        "axios": "^1.7.3",
-        "dayjs": "^1.11.12",
+        "axios": "^1.7.7",
+        "dayjs": "^1.11.13",
+        "keycloak-js": "^25.0.4",
         "pinia": "^2.2.0",
-        "vue": "^3.4.35",
-        "vue-router": "^4.4.2",
+        "pinia-plugin-persistedstate-2": "^2.0.24",
+        "vue": "^3.5.3",
+        "vue-router": "^4.4.3",
         "webrtc-adapter": "github:webrtc/adapter"
     },
     "devDependencies": {

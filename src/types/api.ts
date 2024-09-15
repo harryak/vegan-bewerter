@@ -7,5 +7,13 @@ export interface ApiDTO {
     products: Product[];
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface ProductDTO {}
+export interface ProductResponseDTO {
+    id: string;
+    brand: string;
+    displayName: string;
+    eans: string[];
+    stores: string[];
+    categories: string[];
+    ratings: number[];
+    totoalRating: number;
+}

@@ -12,5 +12,7 @@
 import { RouterView } from "vue-router";
 // import { useProductsStore } from "./stores/products";
 
-//const productsStore = useProductsStore();
+// const productsStore = useProductsStore();
+
+// await productsStore.fetchData();
 </script>
