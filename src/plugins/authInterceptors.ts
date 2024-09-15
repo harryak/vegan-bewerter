@@ -3,11 +3,9 @@ import { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 
 export const bearerTokenRequestInterceptor = (config: InternalAxiosRequestConfig) => {
     const authStore = useAuthStore();
-    console.log("Request interceptor: ", authStore.isAuthenticated);
 
     if (authStore.isAuthenticated) {
         config.headers["Authorization"] = "Bearer " + authStore.authenticatedUser?.token;
-        console.log(config.headers);
     }
     return config;
 };
@@ -19,7 +17,6 @@ export const refreshTokenResponseInterceptor = async (error: any, apiInstance: A
 
     if (error.response?.status === 401 && !originalConfig._retry) {
         originalConfig._retry = true;
-        console.log("Response interceptor: ", authStore.isAuthenticated, error);
 
         try {
             // Refresh token then retry once

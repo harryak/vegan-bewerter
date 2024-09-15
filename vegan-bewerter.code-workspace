@@ -23,10 +23,10 @@
             "titleBar.activeBackground": "#215732",
             "titleBar.activeForeground": "#e7e7e7",
             "titleBar.inactiveBackground": "#21573299",
-            "titleBar.inactiveForeground": "#e7e7e799"
+            "titleBar.inactiveForeground": "#e7e7e799",
         },
         "peacock.color": "#215732",
-        "cSpell.words": ["Toggleable"],
+        "cSpell.words": ["eans", "Toggleable"],
         "prettier.configPath": "./.prettierrc",
         "prettier.requireConfig": true,
         "eslint.format.enable": true,

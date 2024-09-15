@@ -2,10 +2,9 @@ import axios from "axios";
 
 //import devProducts from "../../products-dev.json";
 
-import { ProductResponseDTO } from "@/types";
+import { BrandResponseDTO, ProductCategoryResponseDTO, ProductResponseDTO, StoreResponseDTO } from "@/types";
 import { bearerTokenRequestInterceptor, refreshTokenResponseInterceptor } from "@/plugins/authInterceptors";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const api = axios.create({
     baseURL: `${import.meta.env.VITE_API_URL}/api/v1/`,
     decompress: true,
@@ -28,8 +27,23 @@ api.interceptors.response.use(
 );
 
 export default {
-    async fetchProducts(): Promise<ProductResponseDTO> {
+    async getBrands(): Promise<BrandResponseDTO[]> {
+        const stub = "brands";
+        return (await api.get(stub)).data;
+    },
+
+    async getProducts(): Promise<ProductResponseDTO[]> {
         const stub = "products";
-        return await api.get(stub);
+        return (await api.get(stub)).data;
+    },
+
+    async getProductCategories(): Promise<ProductCategoryResponseDTO[]> {
+        const stub = "product-categories";
+        return (await api.get(stub)).data;
+    },
+
+    async getStores(): Promise<StoreResponseDTO[]> {
+        const stub = "stores";
+        return (await api.get(stub)).data;
     },
 };

@@ -1,10 +1,18 @@
-import { Brand, Category, Product, Store } from "./products";
+export interface BrandResponseDTO {
+    id: string;
+    name: string;
+}
 
-export interface ApiDTO {
-    brands: Brand[];
-    categories: Category[];
-    stores: Store[];
-    products: Product[];
+export interface ProductCategoryResponseDTO {
+    id: string;
+    displayName: string;
+}
+
+export interface ProductRatingResponseDTO {
+    id: string;
+    author: string;
+    totalStars: number;
+    comment?: string;
 }
 
 export interface ProductResponseDTO {
@@ -15,5 +23,10 @@ export interface ProductResponseDTO {
     stores: string[];
     categories: string[];
     ratings: number[];
-    totoalRating: number;
+    totalRating: number;
+}
+
+export interface StoreResponseDTO {
+    id: string;
+    name: string;
 }

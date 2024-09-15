@@ -1,8 +1,9 @@
 import { defineStore } from "pinia";
 import { ref, Ref } from "vue";
 
-import api from "../api/products";
-import { Brand, Category, Product, Store } from "../types";
+import api from "@/api/products";
+import { Brand, Category, Product, Store } from "@/types/products";
+import { ApiMapperService } from "@/services/apiMapper";
 
 export const useProductsStore = defineStore("products", () => {
     const brands: Ref<Brand[]> = ref([]);
@@ -13,6 +14,8 @@ export const useProductsStore = defineStore("products", () => {
     const brandsIDFilter: Ref<string[]> = ref([]);
     const categoriesIDFilter: Ref<string[]> = ref([]);
     const storesIDFilter: Ref<string[]> = ref([]);
+
+    const apiMapperServiceInstance = ApiMapperService();
 
     const resetFilter = (filter: "brands" | "categories" | "stores" | ("brands" | "categories" | "stores")[]): void => {
         if (filter === "brands" || filter.includes("brands")) {
@@ -33,12 +36,20 @@ export const useProductsStore = defineStore("products", () => {
     };
 
     const fetchData = async (): Promise<void> => {
-        const data = await api.fetchProducts();
+        const [brandDTOs, productCategoryDTOs, productDTOs, storeDTOs] = await Promise.all([
+            api.getBrands(),
+            api.getProductCategories(),
+            api.getProducts(),
+            api.getStores(),
+        ]);
 
-        brands.value = data.brands;
-        categories.value = data.categories;
-        stores.value = data.stores;
-        products.value = data.products;
+        brands.value = brandDTOs.map(apiMapperServiceInstance.brandResponseDTOtoBrand);
+        categories.value = productCategoryDTOs.map(apiMapperServiceInstance.productCategoryResponseDTOtoCategory);
+        stores.value = storeDTOs.map(apiMapperServiceInstance.storeResponseDTOtoStore);
+
+        products.value = productDTOs.map(dto =>
+            apiMapperServiceInstance.productResponseDTOtoProduct(dto, brands.value, categories.value, stores.value),
+        );
 
         resetAllFilters();
     };
