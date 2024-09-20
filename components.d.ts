@@ -15,6 +15,7 @@ declare module 'vue' {
     DropdownElement: typeof import('./src/components/Forms/DropdownElement.vue')['default']
     DropdownList: typeof import('./src/components/Forms/DropdownList.vue')['default']
     FloatingActionButton: typeof import('./src/components/Components/FloatingActionButton.vue')['default']
+    LoadingOverlay: typeof import('./src/components/Components/LoadingOverlay.vue')['default']
     PhotoElement: typeof import('./src/components/Forms/PhotoElement.vue')['default']
     ProductForm: typeof import('./src/components/ProductForm.vue')['default']
     ProductGridFilter: typeof import('./src/components/ProductGridFilter.vue')['default']

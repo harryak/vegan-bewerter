@@ -1,0 +1,104 @@
+.leaf-loader {
+    .leaf-tr {
+        transform-origin: center center;
+    }
+
+    .leaf {
+        .leaf-greens {
+            fill: var(--color-main);
+            stroke: var(--color-main);
+            stroke-width: 5;
+        }
+
+        .leaf-stem {
+            fill: none;
+            stroke: var(--color-main-shade-2);
+            stroke-linecap: round;
+            stroke-width: 3;
+        }
+    }
+
+    .leaf-1_tr {
+        animation: animation-leaf-1-ro 1000ms linear infinite normal forwards;
+        transform: rotate(155deg);
+    }
+    @keyframes animation-leaf-1-ro {
+        0% {
+            transform: rotate(155deg);
+        }
+        100% {
+            transform: rotate(260deg);
+        }
+    }
+    .leaf-1-greens {
+        animation: animation-leaf-1-m 1000ms linear infinite normal forwards;
+    }
+    @keyframes animation-leaf-1-m {
+        0% {
+            d: path(
+                "M179.083891,44.81769C177.48785,43.205404,135.778601,43.689904,122.857052,62.83886C109.935503,81.987816,119.753517,89.444061,129.770497,89.388874C139.787477,89.333687,144.532606,83.914306,155.677004,69.845507C166.797848,55.806443,180.679932,46.429976,179.083891,44.81769Z"
+            );
+        }
+        100% {
+            d: path(
+                "M179.083891,44.81769C174.923212,40.568656,137.067338,35.677158,124.145789,54.826114C111.22424,73.97507,119.753517,89.444061,129.770497,89.388874C139.787477,89.333687,144.532606,83.914306,155.677004,69.845507C166.797848,55.806443,183.24457,49.066724,179.083891,44.81769Z"
+            );
+        }
+    }
+
+    .leaf-2_tr {
+        animation: animation-leaf-2-ro 1000ms linear infinite normal forwards;
+        transform: rotate(260deg);
+    }
+    @keyframes animation-leaf-2-ro {
+        0% {
+            transform: rotate(260deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    .leaf-2-greens {
+        animation: animation-leaf-2-m 1000ms linear infinite normal forwards;
+    }
+    @keyframes animation-leaf-2-m {
+        0% {
+            d: path(
+                "M179.083891,44.81769C174.923212,40.568656,137.067338,35.677158,124.145789,54.826114C111.22424,73.97507,119.753517,89.444061,129.770497,89.388874C139.787477,89.333687,144.532606,83.914306,155.677004,69.845507C166.797848,55.806443,183.24457,49.066724,179.083891,44.81769Z"
+            );
+        }
+        100% {
+            d: path(
+                "M174.348089,40.137827C172.752048,38.525541,132.221829,48.833675,122.874915,66.089517C113.528001,83.345359,125.097039,87.358919,129.770497,89.388874C134.443955,91.418829,144.330113,89.462779,155.474511,75.39398C166.595355,61.354916,175.94413,41.750113,174.348089,40.137827Z"
+            );
+        }
+    }
+
+    .leaf-3_tr {
+        animation: animation-leaf-3-ro 1000ms linear infinite normal forwards;
+        transform: rotate(0deg);
+    }
+    @keyframes animation-leaf-3-ro {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(155deg);
+        }
+    }
+    .leaf-3-greens {
+        animation: animation-leaf-3-m 1000ms linear infinite normal forwards;
+    }
+    @keyframes animation-leaf-3-m {
+        0% {
+            d: path(
+                "M174.348089,40.137827C172.752048,38.525541,132.221829,48.833675,122.874915,66.089517C113.528001,83.345359,125.097039,87.358919,129.770497,89.388874C134.443955,91.418829,144.330113,89.462779,155.474511,75.39398C166.595355,61.354916,175.94413,41.750113,174.348089,40.137827Z"
+            );
+        }
+        100% {
+            d: path(
+                "M179.083891,44.81769C177.48785,43.205404,135.778601,43.689904,122.857052,62.83886C109.935503,81.987816,119.753517,89.444061,129.770497,89.388874C139.787477,89.333687,144.532606,83.914306,155.677004,69.845507C166.797848,55.806443,180.679932,46.429976,179.083891,44.81769Z"
+            );
+        }
+    }
+}

@@ -1,9 +1,11 @@
-<template><div class=""></div></template>
+<template>
+    <div class="test"></div>
+</template>
 
 <script lang="ts" setup>
-import { useProductsStore } from "@/stores/products";
+//import { useProductsStore } from "@/stores/products";
 
-const productsStore = useProductsStore();
+//const productsStore = useProductsStore();
 
-await productsStore.fetchData();
+//await productsStore.fetchData();
 </script>

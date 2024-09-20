@@ -5,6 +5,7 @@
 @import url("./components/_card_element.scss");
 @import url("./components/_card_grid.scss");
 @import url("./components/_floating_action_button.scss");
+@import url("./components/_loading_overlay.scss");
 
 @import url("./forms/_chip_element.scss");
 @import url("./forms/_chip_filter.scss");
@@ -13,6 +14,8 @@
 @import url("./forms/_dropdown_list.scss");
 @import url("./forms/_photo_element.scss");
 @import url("./forms/_text_input.scss");
+
+@import url("./icons/_leaf_loader.scss");
 
 @import url("_utilities.scss");
 
@@ -62,4 +65,11 @@ body {
     display: flex;
     gap: 0.25rem;
     margin: 0 0 1rem 0;
+}
+
+svg {
+    max-height: 100%;
+    max-width: 100%;
+    height: auto;
+    width: auto;
 }
