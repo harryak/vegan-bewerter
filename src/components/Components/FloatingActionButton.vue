@@ -1,15 +1,14 @@
 <template>
     <div class="floating-action-button-container">
-        <PlusSVGComponent class="icon" :aria-hidden="true" v-if="icon === 'plus'" />
+        <SvgComponentPlus class="icon" :aria-hidden="true" v-if="icon === 'plus'" />
         <div role="button" class="floating-action-button" v-ripple />
     </div>
 </template>
 
 <script lang="ts" setup>
-import PlusSVGComponent from "@/common/assets/icons/material-add.svg?component";
+import SvgComponentPlus from "@/common/assets/icons/material-add.svg?component";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const props = defineProps({
+defineProps({
     icon: {
         type: String,
         required: true,

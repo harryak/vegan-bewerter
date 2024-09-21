@@ -1,9 +1,17 @@
 import axios from "axios";
 
-//import devProducts from "../../products-dev.json";
-
-import { BrandResponseDTO, ProductCategoryResponseDTO, ProductResponseDTO, StoreResponseDTO } from "@/types";
 import { bearerTokenRequestInterceptor, refreshTokenResponseInterceptor } from "@/plugins/authInterceptors";
+import {
+    BrandRequestDTO,
+    BrandResponseDTO,
+    ProductCategoryRequestDTO,
+    ProductCategoryResponseDTO,
+    ProductResponseDTO,
+    StoreRequestDTO,
+    StoreResponseDTO,
+} from "@/types";
+
+//import devProducts from "../../products-dev.json";
 
 const api = axios.create({
     baseURL: `${import.meta.env.VITE_API_URL}/api/v1/`,
@@ -32,6 +40,13 @@ export default {
         return (await api.get(stub)).data;
     },
 
+    async addBrand(brandName: string): Promise<BrandResponseDTO> {
+        const stub = "brands";
+        const payload: BrandRequestDTO = { name: brandName };
+
+        return (await api.post(stub, payload)).data;
+    },
+
     async getProducts(): Promise<ProductResponseDTO[]> {
         const stub = "products";
         return (await api.get(stub)).data;
@@ -42,8 +57,22 @@ export default {
         return (await api.get(stub)).data;
     },
 
+    async addProductCategory(productCategoryName: string): Promise<ProductCategoryResponseDTO> {
+        const stub = "product-categories";
+        const payload: ProductCategoryRequestDTO = { displayName: productCategoryName };
+
+        return (await api.post(stub, payload)).data;
+    },
+
     async getStores(): Promise<StoreResponseDTO[]> {
         const stub = "stores";
         return (await api.get(stub)).data;
+    },
+
+    async addStore(storeName: string): Promise<StoreResponseDTO> {
+        const stub = "stores";
+        const payload: StoreRequestDTO = { name: storeName };
+
+        return (await api.post(stub, payload)).data;
     },
 };

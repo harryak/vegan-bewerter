@@ -3,16 +3,16 @@
         <canvas class="photo-element-output" ref="canvasElement"></canvas>
         <div class="photo-element-output-toolbar">
             <button class="photo-element-delete" type="button" @click="deletePhoto()" v-ripple v-if="hasNewPhoto">
-                <SVGDeleteComponent class="icon icon-delete" />
+                <SvgComponentDelete class="icon icon-delete" />
             </button>
             <button class="photo-element-new" type="button" @click="openOverlay()" v-ripple>
-                <SVGEditComponent class="icon icon-edit" v-if="hasNewPhoto" />
-                <SVGPhotoAddComponent class="icon icon-photo-add" v-else />
+                <SvgComponentEdit class="icon icon-edit" v-if="hasNewPhoto" />
+                <SvgComponentPhotoAdd class="icon icon-photo-add" v-else />
             </button>
         </div>
     </div>
     <div class="photo-element-overlay" :class="{ open: isOverlayOpen }">
-        <SVGCloseComponent class="icon icon-close" @click="closeOverlay()" />
+        <SvgComponentClose class="icon icon-close" @click="closeOverlay()" />
         <video class="photo-element-livestream" ref="videoElement">Camera is not available.</video>
         <div class="photo-element-camera-toolbar">
             <div class="photo-element-camera-button-wrapper">
@@ -27,10 +27,10 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import SVGCloseComponent from "@/common/assets/icons/material-close.svg?component";
-import SVGDeleteComponent from "@/common/assets/icons/material-delete.svg?component";
-import SVGEditComponent from "@/common/assets/icons/material-edit.svg?component";
-import SVGPhotoAddComponent from "@/common/assets/icons/material-photo-add.svg?component";
+import SvgComponentClose from "@/common/assets/icons/material-close.svg?component";
+import SvgComponentDelete from "@/common/assets/icons/material-delete.svg?component";
+import SvgComponentEdit from "@/common/assets/icons/material-edit.svg?component";
+import SvgComponentPhotoAdd from "@/common/assets/icons/material-photo-add.svg?component";
 
 const isOverlayOpen = ref(false);
 const hasNewPhoto = ref(false);

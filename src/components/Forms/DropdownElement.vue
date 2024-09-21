@@ -10,7 +10,7 @@
                 @click="openDropdown()"
                 @blur="closeDropdown()"
             />
-            <SVGDownComponent
+            <SvgComponentDown
                 :class="{ 'dropdown-toggle': true, open: isDropdownOpen }"
                 @click="toggleDropdown()"
                 v-ripple
@@ -32,7 +32,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
 
-import SVGDownComponent from "@/common/assets/icons/material-down.svg?component";
+import SvgComponentDown from "@/common/assets/icons/material-down.svg?component";
 
 import { generateUid } from "@/utilities/generateUid";
 

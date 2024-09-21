@@ -13,7 +13,7 @@
             @keydown.down.stop.prevent="focusFirstDropdownItem()"
             @keydown.up.stop.prevent="focusLastDropdownItem()"
         />
-        <SVGDownComponent
+        <SvgComponentDown
             :class="{ 'chip-input-dropdown-toggle': true, open: isDropdownOpen }"
             @click="toggleDropdown()"
             v-ripple
@@ -50,7 +50,7 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref } from "vue";
 
-import SVGDownComponent from "@/common/assets/icons/material-down.svg?component";
+import SvgComponentDown from "@/common/assets/icons/material-down.svg?component";
 
 import { generateUid } from "@/utilities/generateUid";
 
@@ -79,7 +79,7 @@ const props = defineProps({
         default: [],
     },
 });
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["add-item", "update:modelValue"]);
 
 onMounted(() => {
     document.getElementById(uid)?.parentElement?.classList.add("preserve-3d");
@@ -131,18 +131,7 @@ const addNewItem = (newItemLabel: string) => {
         return;
     }
 
-    newItemInput.value = "";
-
-    let idCandidate: string;
-    do {
-        idCandidate = generateUid();
-    } while (chipElements.value.find(item => item.id === idCandidate) !== undefined);
-
-    chipElements.value.push({ id: idCandidate, label: newItemLabel });
-
-    setTimeout(() => {
-        addChip(idCandidate);
-    }, 50);
+    emit("add-item", newItemLabel);
 };
 
 const toggleItemSelection = (itemId: string) => {

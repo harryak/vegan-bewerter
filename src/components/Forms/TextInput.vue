@@ -22,7 +22,7 @@
             v-ripple
             v-if="submitButton"
         >
-            <AddSVGComponent v-if="submitButton === 'add'" />
+            <SvgComponentAdd v-if="submitButton === 'add'" />
         </button>
         <div class="text-input-messages">
             <p class="validation-message" v-if="validationMessage">
@@ -38,7 +38,7 @@
 <script lang="ts" setup>
 import { computed, reactive } from "vue";
 
-import AddSVGComponent from "@/common/assets/icons/material-add.svg?component";
+import SvgComponentAdd from "@/common/assets/icons/material-add.svg?component";
 
 import { generateUid } from "@/utilities/generateUid";
 

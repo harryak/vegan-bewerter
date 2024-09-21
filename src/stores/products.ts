@@ -64,6 +64,20 @@ export const useProductsStore = defineStore("products", () => {
         return brands.value.filter((brand: Brand) => existingCombinations.indexOf(brand.id) >= 0);
     };
 
+    const addNewBrand = async (brandName: string): Promise<Brand> => {
+        return apiMapperServiceInstance.brandResponseDTOtoBrand(await api.addBrand(brandName));
+    };
+
+    const addNewCategory = async (categoryName: string): Promise<Category> => {
+        return apiMapperServiceInstance.productCategoryResponseDTOtoCategory(
+            await api.addProductCategory(categoryName),
+        );
+    };
+
+    const addNewStore = async (storeName: string): Promise<Store> => {
+        return apiMapperServiceInstance.storeResponseDTOtoStore(await api.addStore(storeName));
+    };
+
     return {
         brands,
         categories,
@@ -72,7 +86,13 @@ export const useProductsStore = defineStore("products", () => {
         brandsFilter: brandsIDFilter,
         categoriesFilter: categoriesIDFilter,
         storesFilter: storesIDFilter,
+
         fetchData,
+
+        addNewBrand,
+        addNewCategory,
+        addNewStore,
+
         resetFilter,
         resetFilters: resetAllFilters,
         brandsFiltered,

@@ -1,7 +1,7 @@
 <template>
     <div class="product-grid-filter">
         <template v-for="brand in brandsToSelect" :key="brand.id">
-            <chip-element>{{ brand.name }}</chip-element>
+            <ChipElement>{{ brand.name }}</ChipElement>
         </template>
     </div>
 </template>

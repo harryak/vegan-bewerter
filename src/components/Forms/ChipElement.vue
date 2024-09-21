@@ -2,7 +2,7 @@
     <span :class="chipClasses">
         <input type="checkbox" :id="uid" @change="changeSelected" :checked="isActive" v-if="isToggleable" />
         <label :for="uid">
-            <CheckmarkSVGComponent
+            <SvgComponentCheck
                 :class="{
                     'svg-icon': true,
                     'icon-check': true,
@@ -13,7 +13,7 @@
             <p>
                 <slot />
             </p>
-            <ClearSVGComponent
+            <SvgComponentClear
                 :class="{
                     'svg-icon': true,
                     'icon-clear': true,
@@ -33,8 +33,8 @@ import { generateUid } from "@/utilities/generateUid";
 
 const uid = "chip-" + generateUid();
 
-import CheckmarkSVGComponent from "@/common/assets/icons/material-check.svg?component";
-import ClearSVGComponent from "@/common/assets/icons/material-close.svg?component";
+import SvgComponentCheck from "@/common/assets/icons/material-check.svg?component";
+import SvgComponentClear from "@/common/assets/icons/material-close.svg?component";
 
 const props = defineProps({
     selected: {

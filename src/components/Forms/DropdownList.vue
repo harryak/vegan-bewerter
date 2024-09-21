@@ -12,13 +12,13 @@
             @click="$emit('selected', item.id, item.label)"
         >
             <span>{{ item.label }}</span>
-            <SVGCheckComponent v-if="selectedItems.indexOf(item.id) >= 0" />
+            <SvgComponentCheck v-if="selectedItems.indexOf(item.id) >= 0" />
         </li>
     </ul>
 </template>
 
 <script lang="ts" setup>
-import SVGCheckComponent from "@/common/assets/icons/material-check.svg?component";
+import SvgComponentCheck from "@/common/assets/icons/material-check.svg?component";
 
 defineProps({
     items: {

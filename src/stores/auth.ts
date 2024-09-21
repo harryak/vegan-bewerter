@@ -11,6 +11,12 @@ export const useAuthStore = defineStore(
             url: import.meta.env.VITE_KEYCLOAK_URL,
             clientId: import.meta.env.VITE_KEYCLOAK_CLIENT_ID,
             realm: import.meta.env.VITE_KEYCLOAK_REALM,
+
+            adapter: "default",
+            responseMode: "query",
+            onLoad: "check-sso",
+            pkceMethod: "S256",
+            checkLoginIframe: true,
             silentCheckSsoRedirectUri: `${location.origin}/public/silent-check-sso.html`,
         };
 

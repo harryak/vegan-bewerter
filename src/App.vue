@@ -1,5 +1,5 @@
 <template>
-    <loading-overlay :class="{ 'is-visible': appState.isLoading }" />
+    <LoadingOverlay :class="{ 'is-visible': appState.isLoading }" />
 
     <title-bar>
         <div>Vegan-Bewerter</div>
