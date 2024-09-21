@@ -1,11 +1,10 @@
-import { createRouter, createWebHistory, Router } from "vue-router";
+import { createRouter, createWebHistory, RouterOptions } from "vue-router";
 
 const ProductGrid = () => import("@views/ProductGrid.vue");
 const ProductNew = () => import("@views/ProductNew.vue");
 const StartingPage = () => import("@views/StartingPage.vue");
 
-const router: Router = createRouter({
-    history: createWebHistory(),
+const routerOptions: Partial<RouterOptions> = {
     routes: [
         {
             path: "/",
@@ -24,6 +23,12 @@ const router: Router = createRouter({
             component: ProductNew,
         },
     ],
-});
+};
 
-export default router;
+// With this pattern we get the Keycloak URL rewrites to work properly.
+const initializeRouter = () => {
+    routerOptions.history = createWebHistory(import.meta.env.BASE_URL);
+    return createRouter(routerOptions as RouterOptions);
+};
+
+export { initializeRouter };

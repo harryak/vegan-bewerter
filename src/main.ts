@@ -5,11 +5,12 @@ import { createPersistedStatePlugin } from "pinia-plugin-persistedstate-2";
 import { vRipple } from "@/directives/vRipple";
 
 import App from "./App.vue";
-import router from "./router";
+import { initializeRouter } from "./router";
 
 import "./styles/index.scss";
-import AuthStorePlugin from "@/plugins/authStore";
+//import AuthStorePlugin from "@/plugins/authStore";
 //import { useProductsStore } from "@/stores/products";
+import { useAuthStore } from "@/stores/auth";
 
 const pinia = createPinia();
 const installPersistedStatePlugin = createPersistedStatePlugin();
@@ -17,10 +18,13 @@ pinia.use(context => installPersistedStatePlugin(context));
 
 const app = createApp(App);
 app.directive("ripple", vRipple);
+app.use(pinia);
 
-app.use(pinia).use(router).use(AuthStorePlugin, { pinia }); //.mount("#app");
+const authStore = useAuthStore();
+await authStore.initialize(() => {});
 
-await app.config.globalProperties.$auth.initialize(() => app.mount("#app"));
+app.use(initializeRouter());
+app.mount("#app");
 
 //TODO: Do this intelligently.
 //const productsStore = useProductsStore();
