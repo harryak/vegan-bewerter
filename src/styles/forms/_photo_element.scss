@@ -31,7 +31,7 @@
             border: 0.25rem dashed var(--color-main);
             border-radius: 0.5rem;
 
-            height: 16rem;
+            height: 12.5rem;
             width: 100%;
             padding: 0;
 
@@ -83,7 +83,7 @@
 
     &.has-photo {
         .photo-element-output {
-            max-height: 16rem;
+            max-height: 13rem;
         }
 
         .photo-element-output-toolbar {
@@ -142,7 +142,7 @@
     &.open {
         transform: translate(0, 0);
 
-        height: 100vh;
+        height: 100dvh;
         width: 100vw;
     }
 

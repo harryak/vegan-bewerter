@@ -6,6 +6,7 @@ import {
     BrandResponseDTO,
     ProductCategoryRequestDTO,
     ProductCategoryResponseDTO,
+    ProductRequestDTO,
     ProductResponseDTO,
     StoreRequestDTO,
     StoreResponseDTO,
@@ -50,6 +51,13 @@ export default {
     async getProducts(): Promise<ProductResponseDTO[]> {
         const stub = "products";
         return (await api.get(stub)).data;
+    },
+
+    async addProduct(newProduct: ProductRequestDTO): Promise<ProductResponseDTO> {
+        const stub = "products";
+        const payload: ProductRequestDTO = newProduct;
+
+        return (await api.post(stub, payload)).data;
     },
 
     async getProductCategories(): Promise<ProductCategoryResponseDTO[]> {

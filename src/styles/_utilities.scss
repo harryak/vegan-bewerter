@@ -6,12 +6,40 @@
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+        "top-left top-right"
+        "bottom-left" "bottom-right";
 
     & > .col-left,
     & > .col-right,
     & > .col {
         width: 100%;
         max-width: 100%;
+    }
+
+    & > .col-left {
+        grid-row-start: top-left;
+        grid-row-end: bottom-left;
+    }
+
+    & > .col-right {
+        grid-row-start: top-right;
+        grid-row-end: bottom-right;
+    }
+
+    @media only screen and (max-width: 640px) {
+        & > .col-top {
+            grid-row-start: top-left;
+            grid-row-end: top-left;
+            grid-column-start: top-left;
+            grid-column-end: top-right;
+        }
+        & > .col-bottom {
+            grid-row-start: bottom-right;
+            grid-row-end: bottom-right;
+            grid-column-start: bottom-left;
+            grid-column-end: bottom-right;
+        }
     }
 }
 

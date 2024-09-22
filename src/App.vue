@@ -2,11 +2,24 @@
     <LoadingOverlay :class="{ 'is-visible': appState.isLoading }" />
 
     <title-bar>
-        <div>Vegan-Bewerter</div>
+        <div>VeScan</div>
     </title-bar>
 
     <main>
-        <RouterView />
+        <RouterView v-slot="{ Component }">
+            <template v-if="Component">
+                <Transition mode="out-in">
+                    <KeepAlive>
+                        <Suspense>
+                            <component :is="Component"></component>
+                            <template #fallback
+                                ><LoadingOverlay :class="{ 'is-visible': appState.isLoading }"
+                            /></template>
+                        </Suspense>
+                    </KeepAlive>
+                </Transition>
+            </template>
+        </RouterView>
     </main>
 </template>
 

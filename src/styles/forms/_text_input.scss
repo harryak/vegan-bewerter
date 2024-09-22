@@ -75,6 +75,16 @@
 
             width: calc(100% + 0.125rem);
         }
+
+        &.is-invalid,
+        &.is-invalid:focus,
+        &.is-invalid:focus-visible {
+            border: 0.125rem solid var(--color-error);
+
+            margin: -0.0625rem;
+
+            width: calc(100% + 0.125rem);
+        }
     }
 
     .text-input-submit-button {

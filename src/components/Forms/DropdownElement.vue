@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 
 import SvgComponentDown from "@/common/assets/icons/material-down.svg?component";
 
@@ -69,6 +69,12 @@ onMounted(() => {
 
 const inputValue = ref("");
 const isDropdownOpen = ref(false);
+const isValid = defineModel<boolean>("isValid", { default: false });
+
+watch(inputValue, newInputValue => {
+    isValid.value =
+        (!props.required || !!newInputValue) && (!props.validation || props.validation(newInputValue) === "");
+});
 
 const openDropdown = () => {
     isDropdownOpen.value = true;

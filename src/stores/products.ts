@@ -4,6 +4,7 @@ import { ref, Ref } from "vue";
 import api from "@/api/products";
 import { Brand, Category, Product, Store } from "@/types/products";
 import { ApiMapperService } from "@/services/apiMapper";
+import { ProductRequestDTO } from "@/types";
 
 export const useProductsStore = defineStore("products", () => {
     const brands: Ref<Brand[]> = ref([]);
@@ -35,7 +36,7 @@ export const useProductsStore = defineStore("products", () => {
         resetFilter(["brands", "categories", "stores"]);
     };
 
-    const fetchData = async (): Promise<void> => {
+    const _fetchProducts = async (): Promise<void> => {
         const [brandDTOs, productCategoryDTOs, productDTOs, storeDTOs] = await Promise.all([
             api.getBrands(),
             api.getProductCategories(),
@@ -50,8 +51,15 @@ export const useProductsStore = defineStore("products", () => {
         products.value = productDTOs.map(dto =>
             apiMapperServiceInstance.productResponseDTOtoProduct(dto, brands.value, categories.value, stores.value),
         );
+    };
 
-        resetAllFilters();
+    const synchronizeData = async (): Promise<void> => {
+        try {
+            await _fetchProducts();
+            resetAllFilters();
+        } catch (exception) {
+            console.log(exception);
+        }
     };
 
     const brandsFiltered = (): Brand[] => {
@@ -74,6 +82,15 @@ export const useProductsStore = defineStore("products", () => {
         );
     };
 
+    const addNewProduct = async (newProductDTO: ProductRequestDTO): Promise<Product> => {
+        return apiMapperServiceInstance.productResponseDTOtoProduct(
+            await api.addProduct(newProductDTO),
+            brands.value,
+            categories.value,
+            stores.value,
+        );
+    };
+
     const addNewStore = async (storeName: string): Promise<Store> => {
         return apiMapperServiceInstance.storeResponseDTOtoStore(await api.addStore(storeName));
     };
@@ -87,10 +104,11 @@ export const useProductsStore = defineStore("products", () => {
         categoriesFilter: categoriesIDFilter,
         storesFilter: storesIDFilter,
 
-        fetchData,
+        synchronizeData,
 
         addNewBrand,
         addNewCategory,
+        addNewProduct,
         addNewStore,
 
         resetFilter,

@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive } from "vue";
+import { computed, reactive, watch } from "vue";
 
 import SvgComponentAdd from "@/common/assets/icons/material-add.svg?component";
 
@@ -79,6 +79,11 @@ const props = defineProps({
 });
 
 const inputModel = defineModel<string>({ default: "" });
+const isValid = defineModel<boolean>("isValid", { default: false });
+
+watch(inputModel, newInput => {
+    isValid.value = (!props.required || !!newInput) && (!props.validation || props.validation(newInput) === "");
+});
 
 defineEmits(["submit", "focus", "blur"]);
 
@@ -94,5 +99,6 @@ const inputClasses = reactive({
     filled: computed(() => inputModel.value !== ""),
     "has-message": computed(() => validationMessage.value !== ""),
     active: computed(() => props.isActive),
+    "is-invalid": computed(() => inputModel.value !== "" && !isValid.value),
 });
 </script>

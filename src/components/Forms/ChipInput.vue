@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 
 import SvgComponentDown from "@/common/assets/icons/material-down.svg?component";
 
@@ -89,6 +89,16 @@ const dropdownElement = ref<HTMLElement | null>(null);
 const isDropdownOpen = ref(false);
 const chipElements = ref(props.items);
 const newItemInput = ref("");
+const isValid = defineModel<boolean>("isValid", { default: false });
+
+watch(
+    () => props.modelValue,
+    newModelValue => {
+        isValid.value =
+            (!props.required || newModelValue.length > 0) &&
+            (!props.validation || props.validation(newModelValue) === "");
+    },
+);
 
 const openDropdown = () => {
     isDropdownOpen.value = true;

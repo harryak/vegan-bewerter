@@ -1,21 +1,23 @@
 <template>
     <div class="col-2">
-        <div class="col-left">
+        <div class="col-left col-bottom">
             <TextInput
                 label="EAN"
                 type="text"
                 v-model="ean"
+                v-model:is-valid="isEANValid"
                 :required="true"
                 :maxlength="13"
                 :validation="validations.ean"
             />
-            <TextInput label="Name" v-model="name" :required="true" />
+            <TextInput label="Name" v-model="name" v-model:is-valid="isNameValid" :required="true" />
             <DropdownElement
                 label="Brand"
                 @add-item="addNewBrand"
                 :items="possibleBrands"
                 :required="true"
                 v-model="brand"
+                v-model:is-valid="isBrandValid"
             />
             <ChipInput
                 label="Stores"
@@ -23,22 +25,26 @@
                 :items="possibleStores"
                 :required="true"
                 v-model="stores"
+                v-model:is-valid="areStoresValid"
             />
             <ChipInput
                 label="Categories"
                 @add-item="addNewCategory"
                 :items="possibleProductCategories"
                 v-model="productCategories"
+                v-model:is-valid="areCategoriesValid"
             />
         </div>
-        <div class="col-right">
+        <div class="col-right col-top">
             <PhotoElement />
         </div>
     </div>
+
+    <SubmitButton label="Add product" @submit="saveProduct" />
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 import { useAppStateStore } from "@/stores/appState";
 import { useProductsStore } from "@/stores/products";
@@ -65,10 +71,19 @@ const possibleProductCategories = productsStore.categories.map(category => ({ id
 const possibleStores = productsStore.stores.map(store => ({ id: store.id, label: store.name }));
 
 const ean = ref(props.eanCode);
+const isEANValid = ref(false);
+
 const name = ref<string>("");
+const isNameValid = ref(false);
+
 const brand = ref<string>("");
+const isBrandValid = ref(false);
+
 const stores = ref<string[]>([]);
+const areStoresValid = ref(false);
+
 const productCategories = ref<string[]>([]);
+const areCategoriesValid = ref(false);
 
 const validations: { [inputName: string]: (value: string) => string } = {
     ean: (value: string) =>
@@ -78,6 +93,12 @@ const validations: { [inputName: string]: (value: string) => string } = {
                 : "Is exactly 13 digits."
             : "Has to be numeric.",
 };
+
+const isValid = computed(() => {
+    return (
+        isEANValid.value && isNameValid.value && isBrandValid.value && areStoresValid.value && areCategoriesValid.value
+    );
+});
 
 const addNewBrand = async (brandName: string) => {
     appState.isLoading = true;
@@ -107,5 +128,23 @@ const addNewStore = async (storeName: string) => {
     stores.value.push(newStore.id);
 
     appState.isLoading = false;
+};
+
+const saveProduct = async () => {
+    if (!isValid.value) {
+        return;
+    }
+
+    console.log("Adding product");
+
+    await productsStore.addNewProduct({
+        brand: brand.value,
+        displayName: name.value,
+        eans: [ean.value],
+        stores: stores.value,
+        categories: productCategories.value,
+        ratings: [],
+        totalRating: 0,
+    });
 };
 </script>

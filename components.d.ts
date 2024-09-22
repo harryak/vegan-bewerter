@@ -22,6 +22,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ScannerElement: typeof import('./src/components/Scanner/ScannerElement.vue')['default']
+    SubmitButton: typeof import('./src/components/Forms/SubmitButton.vue')['default']
     TextInput: typeof import('./src/components/Forms/TextInput.vue')['default']
     TitleBar: typeof import('./src/components/TitleBar.vue')['default']
   }
