@@ -1,12 +1,19 @@
 <template>
     <span :class="chipClasses">
-        <input type="checkbox" :id="uid" @change="changeSelected" :checked="isActive" v-if="isToggleable" />
+        <input
+            type="checkbox"
+            :id="uid"
+            @change="changeSelected"
+            :checked="isSelected"
+            :disabled="disabled"
+            v-if="isToggleable"
+        />
         <label :for="uid">
             <SvgComponentCheck
                 :class="{
                     'svg-icon': true,
                     'icon-check': true,
-                    hidden: !isToggleable || !isActive,
+                    hidden: !isToggleable || !isSelected,
                 }"
                 :aria-hidden="true"
             />
@@ -28,7 +35,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive, ref, watch } from "vue";
+import { computed, reactive } from "vue";
 import { generateUid } from "@/utilities/generateUid";
 
 const uid = "chip-" + generateUid();
@@ -37,17 +44,22 @@ import SvgComponentCheck from "@/common/assets/icons/material-check.svg?componen
 import SvgComponentClear from "@/common/assets/icons/material-close.svg?component";
 
 const props = defineProps({
-    selected: {
-        type: Boolean,
-        required: false,
-        default: false,
-    },
     type: {
         type: String,
         required: true,
         default: "filter",
     },
+    selected: {
+        type: Boolean,
+        required: false,
+        default: false,
+    },
     hidden: {
+        type: Boolean,
+        required: false,
+        default: false,
+    },
+    disabled: {
         type: Boolean,
         required: false,
         default: false,
@@ -56,20 +68,20 @@ const props = defineProps({
 
 const emit = defineEmits(["change", "clear"]);
 
-const isToggleable = ["filter"].indexOf(props.type) >= 0;
+const isToggleable = ["filter"].indexOf(props.type) >= 0 && !props.disabled;
 const isClearable = ["input"].indexOf(props.type) >= 0;
 
+const isDisabled = computed(() => props.disabled);
 const isHidden = computed(() => props.hidden);
-watch(
-    () => props.hidden,
-    () => (isActive.value = !props.hidden && (!isToggleable || isActive.value)),
-);
-const isActive = ref((props.selected || !isToggleable) && !props.hidden);
+
+const isSelected = computed(() => !props.disabled && (props.selected || !isToggleable) && !props.hidden);
 
 const chipClasses = reactive({
     chip: true,
     filter: props.type === "filter",
-    active: isActive,
+
+    active: isSelected,
+    disabled: isDisabled,
     hidden: isHidden,
 });
 
@@ -78,7 +90,6 @@ const changeSelected = () => {
         return;
     }
 
-    isActive.value = !isActive.value;
-    emit("change", isActive.value);
+    emit("change", !isSelected.value);
 };
 </script>

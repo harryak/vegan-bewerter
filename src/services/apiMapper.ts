@@ -26,14 +26,10 @@ export const ApiMapperService = () => {
             id: dto.id,
             name: dto.displayName,
 
-            brand: brands.find(brand => brand.id === dto.brand)?.name ?? "",
-            categories: dto.categories
-                .map(categoryId => categories.find(category => category.id === categoryId)?.name)
-                .filter(entry => entry !== undefined),
+            brand: brands.find(brand => brand.id === dto.brand)!,
+            categories: categories.filter(category => dto.categories.includes(category.id)),
             ratings: [],
-            stores: dto.stores
-                .map(storeId => stores.find(store => store.id === storeId)?.name)
-                .filter(entry => entry !== undefined),
+            stores: stores.filter(store => dto.stores.includes(store.id)),
         };
     };
 

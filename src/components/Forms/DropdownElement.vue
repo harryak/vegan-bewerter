@@ -9,6 +9,7 @@
                 @focus="openDropdown()"
                 @click="openDropdown()"
                 @blur="closeDropdown()"
+                @submit="addNewItem(inputValue)"
             />
             <SvgComponentDown
                 :class="{ 'dropdown-toggle': true, open: isDropdownOpen }"
@@ -61,7 +62,7 @@ const props = defineProps({
         default: "",
     },
 });
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["add-item", "update:modelValue"]);
 
 onMounted(() => {
     document.getElementById(uid)?.parentElement?.classList.add("preserve-3d");
@@ -108,5 +109,13 @@ const selectItem = (itemId: string) => {
     if (item) {
         inputValue.value = item.label;
     }
+};
+
+const addNewItem = (newItemLabel: string) => {
+    if (newItemLabel === "") {
+        return;
+    }
+
+    emit("add-item", newItemLabel);
 };
 </script>

@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref, Ref } from "vue";
+import { computed, ref, Ref } from "vue";
 
 import api from "@/api/products";
 import { Brand, Category, Product, Store } from "@/types/products";
@@ -12,29 +12,22 @@ export const useProductsStore = defineStore("products", () => {
     const stores: Ref<Store[]> = ref([]);
     const products: Ref<Product[]> = ref([]);
 
-    const brandsIDFilter: Ref<string[]> = ref([]);
-    const categoriesIDFilter: Ref<string[]> = ref([]);
-    const storesIDFilter: Ref<string[]> = ref([]);
+    const filterOnBrandIDs: Ref<string[]> = ref([]);
+    const filterOnCategoryIDs: Ref<string[]> = ref([]);
+    const filterOnStoreIDs: Ref<string[]> = ref([]);
+
+    const filteredProducts = computed(() =>
+        products.value.filter(
+            product =>
+                (filterOnBrandIDs.value.length < 1 || filterOnBrandIDs.value.includes(product.brand.id)) &&
+                (filterOnCategoryIDs.value.length < 1 ||
+                    product.categories.some(category => filterOnCategoryIDs.value.includes(category.id))) &&
+                (filterOnStoreIDs.value.length < 1 ||
+                    product.stores.some(store => filterOnStoreIDs.value.includes(store.id))),
+        ),
+    );
 
     const apiMapperServiceInstance = ApiMapperService();
-
-    const resetFilter = (filter: "brands" | "categories" | "stores" | ("brands" | "categories" | "stores")[]): void => {
-        if (filter === "brands" || filter.includes("brands")) {
-            brandsIDFilter.value = brands.value.map((brand: Brand) => brand.id);
-        }
-
-        if (filter === "categories" || filter.includes("categories")) {
-            categoriesIDFilter.value = categories.value.map((categories: Category) => categories.id);
-        }
-
-        if (filter === "stores" || filter.includes("stores")) {
-            storesIDFilter.value = stores.value.map((stores: Store) => stores.id);
-        }
-    };
-
-    const resetAllFilters = (): void => {
-        resetFilter(["brands", "categories", "stores"]);
-    };
 
     const _fetchProducts = async (): Promise<void> => {
         const [brandDTOs, productCategoryDTOs, productDTOs, storeDTOs] = await Promise.all([
@@ -56,20 +49,9 @@ export const useProductsStore = defineStore("products", () => {
     const synchronizeData = async (): Promise<void> => {
         try {
             await _fetchProducts();
-            resetAllFilters();
         } catch (exception) {
             console.log(exception);
         }
-    };
-
-    const brandsFiltered = (): Brand[] => {
-        const storeIDs = storesIDFilter.value;
-
-        const existingCombinations = products.value
-            .filter((product: Product) => product.stores.some(productStore => storeIDs.indexOf(productStore) >= 0))
-            .flatMap((product: Product) => product.brand);
-
-        return brands.value.filter((brand: Brand) => existingCombinations.indexOf(brand.id) >= 0);
     };
 
     const addNewBrand = async (brandName: string): Promise<Brand> => {
@@ -100,9 +82,8 @@ export const useProductsStore = defineStore("products", () => {
         categories,
         stores,
         products,
-        brandsFilter: brandsIDFilter,
-        categoriesFilter: categoriesIDFilter,
-        storesFilter: storesIDFilter,
+
+        filteredProducts,
 
         synchronizeData,
 
@@ -111,8 +92,8 @@ export const useProductsStore = defineStore("products", () => {
         addNewProduct,
         addNewStore,
 
-        resetFilter,
-        resetFilters: resetAllFilters,
-        brandsFiltered,
+        filterOnBrandIDs,
+        filterOnCategoryIDs,
+        filterOnStoreIDs,
     };
 });

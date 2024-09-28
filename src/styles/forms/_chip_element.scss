@@ -142,4 +142,9 @@
             border-width linear 0ms 250ms;
         overflow: hidden;
     }
+
+    &.disabled {
+        color: var(--color-text-highlight-1);
+        background-color: var(--color-shadow);
+    }
 }

@@ -1,12 +1,16 @@
-export interface Brand {
+export interface NamedEntry {
     id: string;
     name: string;
 }
 
-export interface Category {
-    id: string;
-    name: string;
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface Brand extends NamedEntry {}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface Category extends NamedEntry {}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface Store extends NamedEntry {}
 
 export interface Rating {
     author: string;
@@ -14,16 +18,9 @@ export interface Rating {
     comment?: string;
 }
 
-export interface Store {
-    id: string;
-    name: string;
-}
-
-export interface Product {
-    id?: string;
-    brand: string;
-    name: string;
-    stores: string[];
-    categories: string[];
+export interface Product extends NamedEntry {
+    brand: Brand;
+    stores: Store[];
+    categories: Category[];
     ratings: Rating[];
 }
