@@ -6,7 +6,7 @@
     </title-bar>
 
     <main>
-        <RouterView v-slot="{ Component }">
+        <RouterView :key="$route.fullPath" v-slot="{ Component }">
             <template v-if="Component">
                 <Transition mode="out-in">
                     <KeepAlive>

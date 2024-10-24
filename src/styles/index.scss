@@ -2,21 +2,10 @@
 
 @import url("_title_bar.scss");
 
-@import url("./components/_card_element.scss");
-@import url("./components/_card_grid.scss");
-@import url("./components/_floating_action_button.scss");
-@import url("./components/_loading_overlay.scss");
-
-@import url("./forms/_chip_element.scss");
-@import url("./forms/_chip_filter.scss");
-@import url("./forms/_chip_input.scss");
-@import url("./forms/_dropdown_element.scss");
-@import url("./forms/_dropdown_list.scss");
-@import url("./forms/_photo_element.scss");
-@import url("./forms/_submit_button.scss");
-@import url("./forms/_text_input.scss");
-
-@import url("./icons/_leaf_loader.scss");
+@import url("./components/components.scss");
+@import url("./forms/forms.scss");
+@import url("./icons/icons.scss");
+@import url("./views/views.scss");
 
 @import url("_utilities.scss");
 

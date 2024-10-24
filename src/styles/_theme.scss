@@ -30,3 +30,14 @@
     --fab-color-hover: var(--color-main-shade-1);
     --fab-border-color: var(--color-main-shade-1);
 }
+
+a {
+    text-decoration: none;
+
+    &:active,
+    &:focus,
+    &:hover,
+    &:visited {
+        color: initial;
+    }
+}

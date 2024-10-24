@@ -2,17 +2,24 @@ import { createRouter, createWebHistory, RouterOptions } from "vue-router";
 
 const ProductGrid = () => import("@views/ProductGrid.vue");
 const ProductNew = () => import("@views/ProductNew.vue");
+const ScanningPage = () => import("@views/ScanningPage.vue");
 const StartingPage = () => import("@views/StartingPage.vue");
 
 const routerOptions: Partial<RouterOptions> = {
     routes: [
         {
             path: "/",
-            name: "scan",
+            name: "start",
             component: StartingPage,
         },
         {
+            path: "/scan",
+            name: "scan",
+            component: ScanningPage,
+        },
+        {
             path: "/products",
+            alias: ["/search"],
             name: "products",
             component: ProductGrid,
         },

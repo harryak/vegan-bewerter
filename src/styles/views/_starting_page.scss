@@ -1,0 +1,22 @@
+.choice-wrapper {
+    margin: 0 auto;
+    max-width: 50rem;
+
+    grid-template-rows: min-content min-content;
+
+    .choice {
+        aspect-ratio: 1;
+        display: block;
+        min-height: 15rem;
+        max-height: 30dvh;
+
+        @media only screen and (min-width: 640px) {
+            min-height: auto;
+            max-height: initial;
+        }
+
+        .card-title {
+            text-align: center;
+        }
+    }
+}
