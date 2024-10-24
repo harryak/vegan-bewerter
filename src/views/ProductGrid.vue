@@ -12,20 +12,23 @@
             <template v-slot:title>
                 {{ product.name }}
             </template>
+            <template v-slot:subtitle>
+                <RatingStar :rating="product.totalRating" />
+            </template>
         </CardElement>
     </CardGrid>
     <FloatingActionButton icon="plus" @click="$router.push({ name: 'product-new' })" />
 </template>
 
 <script lang="ts" setup>
+import exampleImageUrl from "@/common/assets/example_food.jpg";
+import CardElement from "@/components/Components/CardElement.vue";
 import CardGrid from "@/components/Components/CardGrid.vue";
 import FloatingActionButton from "@/components/Components/FloatingActionButton.vue";
 import ProductGridFilter from "@/components/ProductGridFilter.vue";
+import RatingStar from "@/components/Components/RatingStar.vue";
 
 import { useProductsStore } from "@/stores/products";
-
-import exampleImageUrl from "@/common/assets/example_food.jpg";
-import CardElement from "@/components/Components/CardElement.vue";
 
 const productsStore = useProductsStore();
 await productsStore.synchronizeData();

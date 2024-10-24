@@ -19,6 +19,7 @@ declare module 'vue' {
     PhotoElement: typeof import('./src/components/Forms/PhotoElement.vue')['default']
     ProductForm: typeof import('./src/components/ProductForm.vue')['default']
     ProductGridFilter: typeof import('./src/components/ProductGridFilter.vue')['default']
+    RatingStar: typeof import('./src/components/Components/RatingStar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ScannerElement: typeof import('./src/components/Scanner/ScannerElement.vue')['default']

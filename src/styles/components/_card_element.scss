@@ -11,6 +11,8 @@
     min-height: 100%;
     width: 100%;
 
+    margin-bottom: 1.5rem;
+
     overflow: hidden;
 
     &:focus-visible {
@@ -56,7 +58,6 @@
 
         .card-title {
             font-size: 1.5em;
-            word-break: break-all;
         }
 
         .card-subtitle {

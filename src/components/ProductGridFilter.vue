@@ -1,8 +1,6 @@
 <template>
-    <div>
+    <div class="filter-wrapper">
         <ChipFilter label="Stores" v-model="storesToSelect" @update:modelValue="onSelectStore"> </ChipFilter>
-    </div>
-    <div>
         <ChipFilter label="Brands" v-model="brandsToSelect" @update:modelValue="onSelectBrand"> </ChipFilter>
     </div>
 </template>

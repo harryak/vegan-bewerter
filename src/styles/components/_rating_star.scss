@@ -1,0 +1,48 @@
+.rating-star-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 0.25em;
+
+    .rating-star-numbers {
+        display: block;
+    }
+
+    .rating-star {
+        display: block;
+
+        aspect-ratio: 1;
+        height: 1em;
+        width: auto;
+        margin-top: 0.15em;
+
+        position: relative;
+
+        .icon.star-outline {
+            fill: var(--color-star);
+
+            height: 100%;
+            width: 100%;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            z-index: 1;
+        }
+
+        .icon.star-filler {
+            fill: var(--color-star);
+
+            height: 100%;
+            width: 100%;
+
+            clip-path: rect(0 var(--clip-width) 100% 0);
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            z-index: 0;
+        }
+    }
+}

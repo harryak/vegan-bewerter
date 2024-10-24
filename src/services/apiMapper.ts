@@ -30,6 +30,7 @@ export const ApiMapperService = () => {
             categories: categories.filter(category => dto.categories.includes(category.id)),
             ratings: [],
             stores: stores.filter(store => dto.stores.includes(store.id)),
+            totalRating: dto.totalRating,
         };
     };
 

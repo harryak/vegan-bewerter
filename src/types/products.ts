@@ -23,4 +23,5 @@ export interface Product extends NamedEntry {
     stores: Store[];
     categories: Category[];
     ratings: Rating[];
+    totalRating: number;
 }
