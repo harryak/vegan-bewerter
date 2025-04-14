@@ -50,7 +50,7 @@ export const useProductsStore = defineStore("products", () => {
         try {
             await _fetchProducts();
         } catch (exception) {
-            console.log(exception);
+            console.error(exception);
         }
     };
 

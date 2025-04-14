@@ -1,7 +1,21 @@
 <template>
     <div class="filter-wrapper">
-        <ChipFilter label="Stores" v-model="storesToSelect" @update:modelValue="onSelectStore"> </ChipFilter>
-        <ChipFilter label="Brands" v-model="brandsToSelect" @update:modelValue="onSelectBrand"> </ChipFilter>
+        <ChipFilter
+            label="Stores"
+            :isCollapsible="true"
+            :isCollapsed="true"
+            v-model="storesToSelect"
+            @update:modelValue="onSelectStore"
+        >
+        </ChipFilter>
+        <ChipFilter
+            label="Brands"
+            :isCollapsible="true"
+            :isCollapsed="true"
+            v-model="brandsToSelect"
+            @update:modelValue="onSelectBrand"
+        >
+        </ChipFilter>
     </div>
 </template>
 

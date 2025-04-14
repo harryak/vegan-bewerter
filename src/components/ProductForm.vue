@@ -135,8 +135,6 @@ const saveProduct = async () => {
         return;
     }
 
-    console.log("Adding product");
-
     await productsStore.addNewProduct({
         brand: brand.value,
         displayName: name.value,

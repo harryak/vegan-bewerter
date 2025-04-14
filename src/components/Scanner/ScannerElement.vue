@@ -70,7 +70,7 @@ onMounted(() => {
         },
         error => {
             if (error) {
-                console.log("Scanner error:", error);
+                console.error("Scanner error:", error);
             } else {
                 Quagga.start();
             }

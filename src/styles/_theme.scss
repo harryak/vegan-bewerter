@@ -10,7 +10,7 @@
 
     --color-error: #e12c0c;
 
-    --color-background: white;
+    --color-background: #ffffff;
 
     --color-shadow: #090b0a4f;
     --color-overlay: #090b0ab9;
@@ -22,6 +22,9 @@
 
     --chip-color-active: var(--color-main);
     --chip-color-hover: var(--color-main-soft);
+
+    --chip-filter-background: #ebf7d8;
+    --chip-filter-delete: #2e3833;
 
     --dropdown-color-border: var(--color-main-shade-1);
     --dropdown-color-hover: var(--color-main-soft);
