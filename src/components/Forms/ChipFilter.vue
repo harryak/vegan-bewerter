@@ -29,20 +29,14 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, Reactive, ref } from "vue";
+import { computed, ref } from "vue";
 import ChipElement from "./ChipElement.vue";
+
+import { ChipFilterItem } from "@/types/filter";
 
 import SvgComponentDelete from "@/common/assets/icons/material-delete.svg?component";
 import SvgComponentDropDown from "@/common/assets/icons/material-drop-down.svg?component";
 import SvgComponentSearch from "@/common/assets/icons/material-search.svg?component";
-
-type ChipFilterItem = Reactive<{
-    id: string;
-    name: string;
-    isSelected: boolean;
-    isDisabled: boolean;
-    isHidden: boolean;
-}>;
 
 const props = defineProps({
     label: {
