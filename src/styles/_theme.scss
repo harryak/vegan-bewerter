@@ -1,12 +1,13 @@
 :root {
     --color-main: #348c1e;
-    --color-main-shade-1: #256515;
-    --color-main-shade-2: #13320b;
-    --color-main-soft: #dceed1;
+    --color-main-darker-1: #256515;
+    --color-main-darker-2: #13320b;
+    --color-main-lighter-1: #bde8a2;
+    --color-main-lighter-2: #dceed1;
 
     --color-text: #090b0a;
     --color-text-highlight-1: #2e3833;
-    --color-text-inverted: #dceed1;
+    --color-text-inverted: var(--color-main-lighter-2);
 
     --color-error: #e12c0c;
 
@@ -16,22 +17,25 @@
     --color-overlay: #090b0ab9;
 
     --card-grid-gutter-width: 0.5rem;
-    --card-color: #ebf7d8;
-    --card-color-darken: #cddbb8;
-    --card-border-color: #cddbb8;
+    --card-color: var(--color-main-lighter-1);
+    --card-color-hover: var(--color-main-lighter-2);
+    --card-color-border: var(--color-main-darker-1);
+    --card-color-text: var(--color-text);
 
     --chip-color-active: var(--color-main);
-    --chip-color-hover: var(--color-main-soft);
+    --chip-color-hover: var(--color-main-lighter-2);
 
-    --chip-filter-background: #ebf7d8;
+    --chip-filter-background: var(--color-main-lighter-1);
     --chip-filter-delete: #2e3833;
 
-    --dropdown-color-border: var(--color-main-shade-1);
-    --dropdown-color-hover: var(--color-main-soft);
+    --dropdown-color-border: var(--color-main-darker-1);
+    --dropdown-color-hover: var(--color-main-lighter-2);
+    --dropdown-color-selected: var(--color-main-lighter-1);
 
     --fab-color: var(--color-main);
-    --fab-color-hover: var(--color-main-shade-1);
-    --fab-border-color: var(--color-main-shade-1);
+    --fab-color-icon: var(--color-main-lighter-2);
+    --fab-color-hover: var(--color-main-darker-1);
+    --fab-color-border: var(--color-main-darker-1);
 
     --color-star: var(--color-main);
 }

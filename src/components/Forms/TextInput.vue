@@ -1,34 +1,35 @@
 <template>
     <div class="text-input-wrapper">
         <input
+            v-model="inputValue"
             :class="inputClasses"
+            :disabled="disabled"
             :id="uid"
             :maxlength="props.maxlength"
+            name="uid"
             :required="props.required"
             type="text"
-            name="uid"
-            v-model="inputValue"
-            @focus="$emit('focus')"
             @blur.stop.prevent="$emit('blur')"
+            @focus="$emit('focus')"
             @keypress.enter="$emit('submit')"
         />
         <label class="text-input-label" :for="uid" v-if="props.label">{{ props.label }}</label>
         <button
-            type="submit"
+            v-if="submitButton"
             class="text-input-submit-button"
-            @focus="$emit('focus')"
+            type="submit"
             @blur="$emit('blur')"
             @click.prevent="$emit('submit')"
+            @focus="$emit('focus')"
             v-ripple
-            v-if="submitButton"
         >
             <SvgComponentAdd v-if="submitButton === 'add'" />
         </button>
         <div class="text-input-messages">
-            <p class="validation-message" v-if="validationMessage">
+            <p v-if="!disabled && validationMessage" class="validation-message">
                 {{ validationMessage }}
             </p>
-            <p class="character-counter" v-if="props.maxlength">
+            <p v-if="!disabled && props.maxlength" class="character-counter">
                 {{ `${inputValue.length}/${props.maxlength}` }}
             </p>
         </div>
@@ -45,23 +46,29 @@ import { generateUid } from "@/utilities/generateUid";
 const uid = "text-input-" + generateUid();
 
 const props = defineProps({
+    active: {
+        type: Boolean,
+        required: false,
+        default: false,
+    },
+    disabled: {
+        type: Boolean,
+        required: false,
+        default: false,
+    },
     label: {
         type: String,
         required: false,
         default: "",
     },
-    validation: {
-        type: Function,
+    maxlength: {
+        type: Number,
         required: false,
     },
     required: {
         type: Boolean,
         required: false,
         default: false,
-    },
-    maxlength: {
-        type: Number,
-        required: false,
     },
     submitButton: {
         type: String,
@@ -71,10 +78,9 @@ const props = defineProps({
             return typeof value === "string" && ["", "submit", "add"].indexOf(value) >= 0;
         },
     },
-    isActive: {
-        type: Boolean,
+    validation: {
+        type: Function,
         required: false,
-        default: false,
     },
 });
 
@@ -103,7 +109,7 @@ const inputClasses = reactive({
     "text-input": true,
     filled: computed(() => inputValue.value !== ""),
     "has-message": computed(() => validationMessage.value !== ""),
-    active: computed(() => props.isActive),
+    active: computed(() => props.active),
     "is-invalid": computed(() => inputValue.value !== "" && !isValid.value),
 });
 </script>

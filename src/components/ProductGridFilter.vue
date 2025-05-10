@@ -1,23 +1,23 @@
 <template>
     <div class="filter-wrapper">
         <ChipFilter
+            v-model="storesToSelect"
             label="Stores"
             :isCollapsible="true"
             :isCollapsed="true"
-            v-model="storesToSelect"
             @update:modelValue="onSelectStore"
         >
         </ChipFilter>
         <ChipFilter
+            v-model="brandsToSelect"
             label="Brands"
             :isCollapsible="true"
             :isCollapsed="true"
-            v-model="brandsToSelect"
             @update:modelValue="onSelectBrand"
         >
         </ChipFilter>
         <div class="filter-clear-wrapper">
-            <button class="filter-clear" @click="onClearFilters">Clear all filters</button>
+            <ButtonElement @click="onClearFilters">Clear all filters</ButtonElement>
         </div>
     </div>
 </template>
@@ -27,6 +27,7 @@ import { reactive } from "vue";
 import { useProductsStore } from "@/stores/products";
 import ChipFilter from "./Forms/ChipFilter.vue";
 import { ChipFilterItem } from "@/types/filter";
+import ButtonElement from "./Forms/ButtonElement.vue";
 
 const productsStore = useProductsStore();
 

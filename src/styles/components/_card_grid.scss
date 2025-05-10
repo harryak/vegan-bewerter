@@ -28,7 +28,7 @@
         transition: background-color 200ms ease-in-out;
 
         &:hover {
-            background-color: var(--card-color-darken);
+            background-color: var(--card-color-hover);
         }
     }
 }

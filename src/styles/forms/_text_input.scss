@@ -30,6 +30,8 @@
     }
 
     input.text-input {
+        color: var(--color-text-highlight-1);
+
         box-sizing: border-box;
 
         border: 0.0625rem solid var(--color-text-highlight-1);
@@ -45,10 +47,15 @@
 
         width: 100%;
 
+        transition:
+            border-color 250ms ease-in-out,
+            height 250ms ease-in-out;
+
         &.filled,
         &.active,
         &:focus,
-        &:focus-visible {
+        &:focus-visible,
+        &:disabled {
             outline: none;
 
             & + label.text-input-label {
@@ -84,6 +91,10 @@
             margin: -0.0625rem;
 
             width: calc(100% + 0.125rem);
+        }
+
+        &:disabled {
+            border-color: transparent;
         }
     }
 

@@ -14,6 +14,7 @@
 
     box-sizing: border-box;
     height: 3rem;
+    margin: 2px;
     min-height: 3rem;
     width: max-content;
     max-width: 100%;
@@ -144,7 +145,7 @@
     }
 
     &.disabled {
-        color: var(--color-text-highlight-1);
-        background-color: var(--color-shadow);
+        color: var(--color-text-inverted);
+        background-color: var(--color-main-darker-1);
     }
 }

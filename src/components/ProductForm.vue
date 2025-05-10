@@ -1,65 +1,90 @@
 <template>
     <div class="col-2">
         <div class="col-left col-bottom">
-            <text-input
-                label="EAN"
-                type="text"
+            <TextInput
                 v-model="ean"
                 v-model:is-valid="isEANValid"
-                :required="true"
+                :disabled="!isEditingActive"
+                label="EAN"
                 :maxlength="13"
+                :required="true"
+                type="text"
                 :validation="validations.ean"
             />
-            <text-input label="Name" v-model="name" v-model:is-valid="isNameValid" :required="true" />
-            <dropdown-element
-                label="Brand"
-                @add-item="addNewBrand"
-                :items="possibleBrands"
+            <TextInput
+                v-model="name"
+                v-model:is-valid="isNameValid"
+                :disabled="!isEditingActive"
+                label="Name"
                 :required="true"
+            />
+            <DropdownElement
                 v-model="brand"
                 v-model:is-valid="isBrandValid"
-            />
-            <chip-input
-                label="Stores"
-                @add-item="addNewStore"
-                :items="possibleStores"
+                :disabled="!isEditingActive"
+                label="Brand"
+                :items="possibleBrands"
                 :required="true"
+                @add-item="addNewBrand"
+            />
+            <ChipInput
                 v-model="stores"
                 v-model:is-valid="areStoresValid"
+                :disabled="!isEditingActive"
+                label="Stores"
+                :items="possibleStores"
+                :required="true"
+                @add-item="addNewStore"
             />
-            <chip-input
-                label="Categories"
-                @add-item="addNewCategory"
-                :items="possibleProductCategories"
+            <ChipInput
                 v-model="productCategories"
                 v-model:is-valid="areCategoriesValid"
+                :disabled="!isEditingActive"
+                label="Categories"
+                :items="possibleProductCategories"
+                @add-item="addNewCategory"
             />
         </div>
         <div class="col-right col-top">
-            <PhotoElement />
+            <PhotoElement v-if="isNew" />
+            <img v-else :src="exampleImageUrl" />
         </div>
     </div>
 
-    <SubmitButton label="Add product" @submit="saveProduct" />
+    <SubmitButton v-if="isEditingActive" @submit="saveProduct">{{ submitLabel }}</SubmitButton>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref } from "vue";
+
+import exampleImageUrl from "@/common/assets/example_food.jpg";
+
+import { Product } from "@/types";
 
 import { useAppStateStore } from "@/stores/appState";
 import { useProductsStore } from "@/stores/products";
 
 import ChipInput from "./Forms/ChipInput.vue";
 import DropdownElement from "./Forms/DropdownElement.vue";
-import TextInput from "./Forms/TextInput.vue";
 import PhotoElement from "./Forms/PhotoElement.vue";
-import { Product } from "@/types";
+import SubmitButton from "./Forms/SubmitButton.vue";
+import TextInput from "./Forms/TextInput.vue";
 
 const props = defineProps({
     eanCode: {
         type: String,
         required: false,
         default: undefined,
+    },
+    isNew: {
+        type: Boolean,
+        required: false,
+        default: false,
+    },
+    active: {
+        type: Boolean,
+        required: false,
+        default: false,
     },
 });
 
@@ -68,6 +93,10 @@ const inputModel = defineModel<Partial<Product> | Product>({ default: {} });
 const appState = useAppStateStore();
 const productsStore = useProductsStore();
 appState.isLoading = false;
+
+const submitLabel = props.isNew ? "Add product" : "Save product";
+
+const isEditingActive = ref(props.active);
 
 const possibleBrands = productsStore.brands.map(brand => ({ id: brand.id, label: brand.name }));
 const possibleProductCategories = productsStore.categories.map(category => ({ id: category.id, label: category.name }));

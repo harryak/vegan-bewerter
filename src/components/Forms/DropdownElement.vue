@@ -2,6 +2,7 @@
     <div :class="{ 'dropdown-element': true, open: isDropdownOpen }" :id="uid">
         <div class="text-input-wrapper">
             <text-input
+                :disabled="disabled"
                 :label="label"
                 :required="required"
                 :validation="validation"
@@ -12,6 +13,7 @@
                 @submit="addNewItem(inputValue)"
             />
             <SvgComponentDown
+                v-if="!disabled"
                 :class="{ 'dropdown-toggle': true, open: isDropdownOpen }"
                 @click="toggleDropdown()"
                 v-ripple
@@ -40,6 +42,11 @@ import { generateUid } from "@/utilities/generateUid";
 const uid = "dropdown-" + generateUid();
 
 const props = defineProps({
+    disabled: {
+        type: Boolean,
+        required: false,
+        default: false,
+    },
     label: {
         type: String,
         required: true,
@@ -47,6 +54,10 @@ const props = defineProps({
     items: {
         type: Array<{ id: string; label: string }>,
         required: true,
+    },
+    modelValue: {
+        type: String,
+        default: "",
     },
     required: {
         type: Boolean,
@@ -56,10 +67,6 @@ const props = defineProps({
     validation: {
         type: Function,
         required: false,
-    },
-    modelValue: {
-        type: String,
-        default: "",
     },
 });
 const emit = defineEmits(["add-item", "update:modelValue"]);
@@ -80,6 +87,10 @@ watch(inputValue, newInputValue => {
 });
 
 const openDropdown = () => {
+    if (props.disabled) {
+        return;
+    }
+
     isDropdownOpen.value = true;
 
     document.addEventListener("click", closeDropdown, false);

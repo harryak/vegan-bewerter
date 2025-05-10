@@ -1,5 +1,5 @@
 .title-bar {
-    background-color: var(--color-main-shade-2);
+    background-color: var(--color-main-darker-2);
     height: 7rem;
     position: relative;
     width: 100vw;
@@ -15,7 +15,7 @@
     }
 
     & > .title-bar-shade {
-        background-color: var(--color-main-shade-1);
+        background-color: var(--color-main-darker-1);
         top: -1rem;
     }
 

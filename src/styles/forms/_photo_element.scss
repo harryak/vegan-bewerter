@@ -41,11 +41,11 @@
                 border-color ease-in-out 250ms;
 
             &:hover {
-                background-color: var(--color-main-soft);
-                border-color: var(--color-main-shade-1);
+                background-color: var(--color-main-lighter-2);
+                border-color: var(--color-main-darker-1);
 
                 .icon {
-                    fill: var(--color-main-shade-1);
+                    fill: var(--color-main-darker-1);
                 }
             }
 
@@ -72,7 +72,7 @@
             border-radius: 50%;
 
             &:hover {
-                background-color: var(--color-main-shade-1);
+                background-color: var(--color-main-darker-1);
             }
 
             .icon {
@@ -103,7 +103,7 @@
                 border-radius: 50%;
 
                 &:hover {
-                    background-color: var(--color-main-shade-1);
+                    background-color: var(--color-main-darker-1);
                 }
 
                 .icon {
@@ -162,7 +162,7 @@
         &:focus,
         &:focus-visible,
         &:active {
-            fill: var(--color-main-shade-1);
+            fill: var(--color-main-darker-1);
         }
     }
 
@@ -196,7 +196,7 @@
         &:focus,
         &:focus-visible,
         &:active {
-            background-color: var(--color-main-shade-1);
+            background-color: var(--color-main-darker-1);
         }
     }
 

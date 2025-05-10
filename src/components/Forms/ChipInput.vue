@@ -1,11 +1,12 @@
 <template>
     <div :class="{ 'chip-input-wrapper': true, open: isDropdownOpen }" :id="uid">
-        <text-input
-            :label="props.label"
-            submitButton="add"
-            class="chip-input-new"
-            :isActive="isDropdownOpen"
+        <TextInput
             v-model="newItemInput"
+            :class="{ 'chip-input-new': true, disabled: disabled }"
+            :disabled="disabled"
+            :label="props.label"
+            :isActive="isDropdownOpen"
+            submitButton="add"
             @focus="openDropdown()"
             @click="openDropdown()"
             @blur="closeDropdown()"
@@ -14,12 +15,14 @@
             @keydown.up.stop.prevent="focusLastDropdownItem()"
         />
         <SvgComponentDown
+            v-if="!disabled"
             :class="{ 'chip-input-dropdown-toggle': true, open: isDropdownOpen }"
             @click="toggleDropdown()"
             v-ripple
         />
         <div :class="{ 'chip-input-dropdown-wrapper': true, open: isDropdownOpen }" ref="dropdownElement">
-            <dropdown-list
+            <DropdownList
+                :disabled="disabled"
                 :items="items"
                 :selectedItems="modelValue"
                 :isOpen="isDropdownOpen"
@@ -29,15 +32,16 @@
             />
         </div>
         <div class="chip-input">
-            <chip-element
+            <ChipElement
                 :key="inputItem.id"
                 :hidden="modelValue.indexOf(inputItem.id) < 0"
+                :disabled="disabled"
                 type="input"
                 @clear="removeChip(inputItem.id)"
                 v-for="inputItem in chipElements"
             >
                 {{ inputItem.label }}
-            </chip-element>
+            </ChipElement>
         </div>
         <div class="chip-input-messages">
             <p class="validation-message" v-if="validationMessage">
@@ -54,9 +58,18 @@ import SvgComponentDown from "@/common/assets/icons/material-down.svg?component"
 
 import { generateUid } from "@/utilities/generateUid";
 
+import ChipElement from "./ChipElement.vue";
+import DropdownList from "./DropdownList.vue";
+import TextInput from "./TextInput.vue";
+
 const uid = "dropdown-" + generateUid();
 
 const props = defineProps({
+    disabled: {
+        type: Boolean,
+        required: false,
+        default: false,
+    },
     label: {
         type: String,
         required: true,
@@ -64,6 +77,10 @@ const props = defineProps({
     items: {
         type: Array<{ id: string; label: string }>,
         required: true,
+    },
+    modelValue: {
+        type: Array<string>,
+        default: [],
     },
     required: {
         type: Boolean,
@@ -73,10 +90,6 @@ const props = defineProps({
     validation: {
         type: Function,
         required: false,
-    },
-    modelValue: {
-        type: Array<string>,
-        default: [],
     },
 });
 const emit = defineEmits(["add-item", "update:modelValue"]);
@@ -104,6 +117,10 @@ watch(
 );
 
 const openDropdown = () => {
+    if (props.disabled) {
+        return;
+    }
+
     isDropdownOpen.value = true;
 
     document.addEventListener("click", closeDropdown, false);

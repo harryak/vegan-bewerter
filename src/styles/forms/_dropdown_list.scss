@@ -33,10 +33,13 @@
 
         &:hover,
         &:focus,
-        &:focus-visible,
-        &:active {
+        &:focus-visible {
             background-color: var(--dropdown-color-hover);
             outline: none;
+        }
+
+        &.selected {
+            background-color: var(--dropdown-color-selected);
         }
 
         &:last-of-type {

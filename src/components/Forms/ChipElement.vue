@@ -1,12 +1,12 @@
 <template>
     <span :class="chipClasses">
         <input
-            type="checkbox"
-            :id="uid"
-            @change="changeSelected"
+            v-if="isToggleable"
             :checked="isSelected"
             :disabled="disabled"
-            v-if="isToggleable"
+            :id="uid"
+            type="checkbox"
+            @change="changeSelected"
         />
         <label :for="uid">
             <SvgComponentCheck
@@ -21,13 +21,13 @@
                 <slot />
             </p>
             <SvgComponentClear
+                v-if="isClearable"
+                :aria-hidden="true"
                 :class="{
                     'svg-icon': true,
                     'icon-clear': true,
                     hidden: !isClearable,
                 }"
-                :aria-hidden="true"
-                v-if="isClearable"
                 @click="$emit('clear')"
             />
         </label>
@@ -44,12 +44,7 @@ import SvgComponentCheck from "@/common/assets/icons/material-check.svg?componen
 import SvgComponentClear from "@/common/assets/icons/material-close.svg?component";
 
 const props = defineProps({
-    type: {
-        type: String,
-        required: true,
-        default: "filter",
-    },
-    selected: {
+    disabled: {
         type: Boolean,
         required: false,
         default: false,
@@ -59,22 +54,27 @@ const props = defineProps({
         required: false,
         default: false,
     },
-    disabled: {
+    selected: {
         type: Boolean,
         required: false,
         default: false,
+    },
+    type: {
+        type: String,
+        required: true,
+        default: "filter",
     },
 });
 
 const emit = defineEmits(["change", "clear"]);
 
-const isToggleable = ["filter"].indexOf(props.type) >= 0 && !props.disabled;
-const isClearable = ["input"].indexOf(props.type) >= 0;
+const isToggleable = computed(() => ["filter"].indexOf(props.type) >= 0 && !props.disabled);
+const isClearable = computed(() => ["input"].indexOf(props.type) >= 0 && !props.disabled);
 
 const isDisabled = computed(() => props.disabled);
 const isHidden = computed(() => props.hidden);
 
-const isSelected = computed(() => !props.disabled && (props.selected || !isToggleable) && !props.hidden);
+const isSelected = computed(() => !props.disabled && (props.selected || !isToggleable.value) && !props.hidden);
 
 const chipClasses = reactive({
     chip: true,
@@ -86,7 +86,7 @@ const chipClasses = reactive({
 });
 
 const changeSelected = () => {
-    if (!isToggleable) {
+    if (!isToggleable.value) {
         return;
     }
 
