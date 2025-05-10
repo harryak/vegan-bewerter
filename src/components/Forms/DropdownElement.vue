@@ -68,13 +68,15 @@ onMounted(() => {
     document.getElementById(uid)?.parentElement?.classList.add("preserve-3d");
 });
 
-const inputValue = ref("");
+const inputValue = ref(props.modelValue);
 const isDropdownOpen = ref(false);
 const isValid = defineModel<boolean>("isValid", { default: false });
 
+const recheckIsValid = (modelValue: string) =>
+    (!props.required || !!modelValue) && (!props.validation || props.validation(modelValue) === "");
+
 watch(inputValue, newInputValue => {
-    isValid.value =
-        (!props.required || !!newInputValue) && (!props.validation || props.validation(newInputValue) === "");
+    isValid.value = recheckIsValid(newInputValue);
 });
 
 const openDropdown = () => {

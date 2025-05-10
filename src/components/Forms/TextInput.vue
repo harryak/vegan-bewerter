@@ -7,7 +7,7 @@
             :required="props.required"
             type="text"
             name="uid"
-            v-model="inputModel"
+            v-model="inputValue"
             @focus="$emit('focus')"
             @blur.stop.prevent="$emit('blur')"
             @keypress.enter="$emit('submit')"
@@ -29,7 +29,7 @@
                 {{ validationMessage }}
             </p>
             <p class="character-counter" v-if="props.maxlength">
-                {{ `${inputModel.length}/${props.maxlength}` }}
+                {{ `${inputValue.length}/${props.maxlength}` }}
             </p>
         </div>
     </div>
@@ -78,27 +78,32 @@ const props = defineProps({
     },
 });
 
-const inputModel = defineModel<string>({ default: "" });
-const isValid = defineModel<boolean>("isValid", { default: false });
-
-watch(inputModel, newInput => {
-    isValid.value = (!props.required || !!newInput) && (!props.validation || props.validation(newInput) === "");
-});
-
 defineEmits(["submit", "focus", "blur"]);
 
+const inputValue = defineModel<string>({ default: "" });
+const isValid = defineModel<boolean>("isValid", { default: false });
+
+const recheckIsValid = (modelValue: string) =>
+    (!props.required || !!modelValue) && (!props.validation || props.validation(modelValue) === "");
+
+isValid.value = recheckIsValid(inputValue.value);
+
+watch(inputValue, newInputValue => {
+    isValid.value = recheckIsValid(newInputValue);
+});
+
 const validationMessage = computed<string>(() => {
-    if (props.required && !inputModel.value) {
+    if (props.required && !inputValue.value) {
         return "Required";
     }
-    return props.validation ? props.validation(inputModel.value) : "";
+    return props.validation ? props.validation(inputValue.value) : "";
 });
 
 const inputClasses = reactive({
     "text-input": true,
-    filled: computed(() => inputModel.value !== ""),
+    filled: computed(() => inputValue.value !== ""),
     "has-message": computed(() => validationMessage.value !== ""),
     active: computed(() => props.isActive),
-    "is-invalid": computed(() => inputModel.value !== "" && !isValid.value),
+    "is-invalid": computed(() => inputValue.value !== "" && !isValid.value),
 });
 </script>

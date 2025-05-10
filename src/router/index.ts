@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouterOptions } from "vue-router";
 
 const ProductGrid = () => import("@views/ProductGrid.vue");
-const ProductNew = () => import("@views/ProductNew.vue");
+const ProductDetails = () => import("@views/ProductDetails.vue");
 const ScanningPage = () => import("@views/ScanningPage.vue");
 const StartingPage = () => import("@views/StartingPage.vue");
 
@@ -24,10 +24,10 @@ const routerOptions: Partial<RouterOptions> = {
             component: ProductGrid,
         },
         {
-            path: "/new",
-            alias: ["/new-product", "/product-new"],
-            name: "product-new",
-            component: ProductNew,
+            path: "/products/:productId",
+            alias: ["/new", "/product-new"],
+            name: "product-details",
+            component: ProductDetails,
         },
     ],
 };

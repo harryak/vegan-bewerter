@@ -91,12 +91,15 @@ const chipElements = ref(props.items);
 const newItemInput = ref("");
 const isValid = defineModel<boolean>("isValid", { default: false });
 
+const recheckIsValid = (modelValue: string[]) =>
+    (!props.required || modelValue.length > 0) && (!props.validation || props.validation(modelValue) === "");
+
+isValid.value = recheckIsValid(props.modelValue);
+
 watch(
     () => props.modelValue,
     newModelValue => {
-        isValid.value =
-            (!props.required || newModelValue.length > 0) &&
-            (!props.validation || props.validation(newModelValue) === "");
+        isValid.value = recheckIsValid(newModelValue);
     },
 );
 

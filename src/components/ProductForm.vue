@@ -1,7 +1,7 @@
 <template>
     <div class="col-2">
         <div class="col-left col-bottom">
-            <TextInput
+            <text-input
                 label="EAN"
                 type="text"
                 v-model="ean"
@@ -10,8 +10,8 @@
                 :maxlength="13"
                 :validation="validations.ean"
             />
-            <TextInput label="Name" v-model="name" v-model:is-valid="isNameValid" :required="true" />
-            <DropdownElement
+            <text-input label="Name" v-model="name" v-model:is-valid="isNameValid" :required="true" />
+            <dropdown-element
                 label="Brand"
                 @add-item="addNewBrand"
                 :items="possibleBrands"
@@ -19,7 +19,7 @@
                 v-model="brand"
                 v-model:is-valid="isBrandValid"
             />
-            <ChipInput
+            <chip-input
                 label="Stores"
                 @add-item="addNewStore"
                 :items="possibleStores"
@@ -27,7 +27,7 @@
                 v-model="stores"
                 v-model:is-valid="areStoresValid"
             />
-            <ChipInput
+            <chip-input
                 label="Categories"
                 @add-item="addNewCategory"
                 :items="possibleProductCategories"
@@ -53,14 +53,17 @@ import ChipInput from "./Forms/ChipInput.vue";
 import DropdownElement from "./Forms/DropdownElement.vue";
 import TextInput from "./Forms/TextInput.vue";
 import PhotoElement from "./Forms/PhotoElement.vue";
+import { Product } from "@/types";
 
 const props = defineProps({
     eanCode: {
         type: String,
         required: false,
-        default: "",
+        default: undefined,
     },
 });
+
+const inputModel = defineModel<Partial<Product> | Product>({ default: {} });
 
 const appState = useAppStateStore();
 const productsStore = useProductsStore();
@@ -70,19 +73,19 @@ const possibleBrands = productsStore.brands.map(brand => ({ id: brand.id, label:
 const possibleProductCategories = productsStore.categories.map(category => ({ id: category.id, label: category.name }));
 const possibleStores = productsStore.stores.map(store => ({ id: store.id, label: store.name }));
 
-const ean = ref(props.eanCode);
+const ean = ref(props.eanCode ?? inputModel.value.eans?.[0] ?? "");
 const isEANValid = ref(false);
 
-const name = ref<string>("");
+const name = ref<string>(inputModel.value.name ?? "");
 const isNameValid = ref(false);
 
-const brand = ref<string>("");
+const brand = ref<string>(inputModel.value.brand?.name ?? "");
 const isBrandValid = ref(false);
 
-const stores = ref<string[]>([]);
+const stores = ref<string[]>(inputModel.value.stores?.map(store => store.id) ?? []);
 const areStoresValid = ref(false);
 
-const productCategories = ref<string[]>([]);
+const productCategories = ref<string[]>(inputModel.value.categories?.map(category => category.id) ?? []);
 const areCategoriesValid = ref(false);
 
 const validations: { [inputName: string]: (value: string) => string } = {
@@ -135,14 +138,16 @@ const saveProduct = async () => {
         return;
     }
 
-    await productsStore.addNewProduct({
-        brand: brand.value,
-        displayName: name.value,
-        eans: [ean.value],
-        stores: stores.value,
-        categories: productCategories.value,
-        ratings: [],
-        totalRating: 0,
-    });
+    // inputModel.value = {
+    //     brand: brand.value,
+    //     displayName: name.value,
+    //     eans: [ean.value],
+    //     stores: stores.value,
+    //     categories: productCategories.value,
+    //     ratings: [],
+    //     totalRating: 0,
+    // };
+
+    // await productsStore.addNewProduct(inputModel.value);
 };
 </script>

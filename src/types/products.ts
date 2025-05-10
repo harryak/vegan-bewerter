@@ -20,6 +20,7 @@ export interface Rating {
 
 export interface Product extends NamedEntry {
     brand: Brand;
+    eans: string[];
     stores: Store[];
     categories: Category[];
     ratings: Rating[];

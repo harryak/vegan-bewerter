@@ -27,6 +27,7 @@ export const ApiMapperService = () => {
             name: dto.displayName,
 
             brand: brands.find(brand => brand.id === dto.brand)!,
+            eans: dto.eans,
             categories: categories.filter(category => dto.categories.includes(category.id)),
             ratings: [],
             stores: stores.filter(store => dto.stores.includes(store.id)),

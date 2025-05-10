@@ -1,13 +1,14 @@
 <template>
     <ProductGridFilter />
+
     <CardGrid clickable>
         <CardElement
             v-for="(product, index) in productsStore.filteredProducts"
             :key="product.id"
             :tabindex="index + 1"
             :imageUrl="exampleImageUrl"
-            @click="console.log('click')"
-            @keypress.enter.prevent="console.log('click')"
+            @click="$router.push({ name: 'product-details', params: { productId: product.id } })"
+            @keypress.enter.prevent="$router.push({ name: 'product-details', params: { productId: product.id } })"
         >
             <template v-slot:title>
                 {{ product.name }}
@@ -17,7 +18,10 @@
             </template>
         </CardElement>
     </CardGrid>
-    <FloatingActionButton icon="plus" @click="$router.push({ name: 'product-new' })" />
+    <FloatingActionButton
+        icon="plus"
+        @click="$router.push({ name: 'product-details', params: { productId: 'new' } })"
+    />
 </template>
 
 <script lang="ts" setup>

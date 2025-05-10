@@ -77,6 +77,10 @@ export const useProductsStore = defineStore("products", () => {
         return apiMapperServiceInstance.storeResponseDTOtoStore(await api.addStore(storeName));
     };
 
+    const getProduct = (productId: string): Product | undefined => {
+        return products.value.find(product => product.id === productId);
+    };
+
     return {
         brands,
         categories,
@@ -91,6 +95,8 @@ export const useProductsStore = defineStore("products", () => {
         addNewCategory,
         addNewProduct,
         addNewStore,
+
+        getProduct,
 
         filterOnBrandIDs,
         filterOnCategoryIDs,
